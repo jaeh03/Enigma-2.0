@@ -52,7 +52,7 @@ npm start
 1. Similar to Github, we can take snapshot **images** of our code. The images contain **_all_** the code, can be shared, and ran on any operating system.
 2. When we take an image of the backend, frontend, and nginx, we can run them together inside of a **container**. This is where Docker Compose comes in, as it allows us to orchestrate images in a way that allows them to run together inside of a container.
 3. In order to make data persist across images and containers, we use **Volumes**.
-4. **In order to run Containers, Images, and Volumes**, you must run the **Docker Daemon**. Docker Desktop comes the Daemon built-in, and is highly recommended as it allows you to view all your docker assets in one place.
+4. **In order to run Containers, Images, and Volumes**, you must run the **Docker Daemon**. Docker Desktop comes with the Daemon built-in, and is highly recommended as it allows you to view all your docker assets in one place.
 5. Docker Images are linux based, therefore we must move content into specific folder locations within the images. You can view what is inside of your image through Docker Desktop.
 
 ## What Docker commands will I need to know?
