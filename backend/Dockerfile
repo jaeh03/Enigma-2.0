@@ -1,12 +1,18 @@
-FROM python:3.8-slim
+FROM python:3.9
 
+# Ensures Python's output is sent straight to the terminal.
+ENV PYTHONUNBUFFERED 1
+
+# Upgrade pip and set the working directory
 RUN pip install --upgrade pip
-
-COPY ./requirements.txt .
-RUN pip install -r requirements.txt
-
-COPY . /app
 WORKDIR /app
 
-COPY ./entrypoint.sh .
-ENTRYPOINT ["sh", "/app/entrypoint.sh"]
+# Copy only the requirements file and install dependencies
+COPY ./requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the rest of the application
+COPY . .
+
+# Set the entrypoint script
+ENTRYPOINT ["sh", "entrypoint.sh"]
