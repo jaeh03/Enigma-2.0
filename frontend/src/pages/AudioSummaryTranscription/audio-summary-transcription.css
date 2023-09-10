@@ -1,0 +1,152 @@
+.background {
+  background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+ .overlap-wrapper {
+  background-color: #ffffff;
+  height: 1024px;
+  width: 1821px;
+}
+
+ .overlap {
+  background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
+  background-position: 50% 50%;
+  background-size: cover;
+  height: 1024px;
+  position: relative;
+}
+
+ .logo-instance {
+  left: 49px !important;
+  position: absolute !important;
+  top: 70px !important;
+}
+
+ .nav-bar-instance {
+  left: 1349px !important;
+  position: absolute !important;
+  top: 94px !important;
+}
+
+ .text-wrapper-2 {
+  color: #000000;
+  font-family: "Sintony", Helvetica;
+  font-size: 48px;
+  font-weight: 400;
+  left: 65px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 252px;
+}
+
+ .text-wrapper-3 {
+  color: #000000;
+  font-family: "Sintony", Helvetica;
+  font-size: 48px;
+  font-weight: 400;
+  left: 906px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 252px;
+}
+
+ .text-wrapper-4 {
+  color: #000000;
+  font-family: "Sintony", Helvetica;
+  font-size: 48px;
+  font-weight: 400;
+  left: 906px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 626px;
+}
+
+ .rectangle {
+  background-color: #ffffff5e;
+  height: 605px;
+  left: 65px;
+  position: absolute;
+  top: 344px;
+  width: 720px;
+}
+
+ .rectangle-2 {
+  background-color: #ffffff5e;
+  height: 263px;
+  left: 906px;
+  position: absolute;
+  top: 339px;
+  width: 812px;
+}
+
+ .rectangle-3 {
+  background-color: #ffffff5e;
+  height: 233px;
+  left: 911px;
+  position: absolute;
+  top: 713px;
+  width: 807px;
+}
+
+ .overlap-group {
+  height: 71px;
+  left: 1465px;
+  position: absolute;
+  top: 207px;
+  width: 255px;
+}
+
+ .next-button {
+  height: 71px;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 255px;
+}
+
+ .div-wrapper {
+  background-color: #ffffff;
+  border-radius: 30px;
+  height: 71px;
+  position: relative;
+  width: 253px;
+}
+
+ .text-wrapper-5 {
+  color: #000000;
+  font-family: "Sintony", Helvetica;
+  font-size: 32px;
+  font-weight: 700;
+  left: 11px;
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 14px;
+}
+
+ .export {
+  height: 50px;
+  left: 201px;
+  position: absolute;
+  top: 10px;
+  width: 50px;
+}
+
+ .line {
+  height: 750px;
+  left: 846px;
+  position: absolute;
+  top: 242px;
+  width: 2px;
+}
