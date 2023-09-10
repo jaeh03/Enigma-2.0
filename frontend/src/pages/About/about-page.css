@@ -1,0 +1,51 @@
+.background {
+  background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  height: 100vh;
+  overflow: hidden;
+}
+
+
+.text-wrapper {
+  font-family: "Sintony", Helvetica;
+  font-weight: 400;
+  left: 50%; /* Horizontally center the element */
+  transform: translateX(-50%); /* Adjust for horizontal centering */
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 30%; /* Vertically center the element */
+  text-align: center; /* Center text horizontally */
+  white-space: nowrap;
+	font-size: 70px;
+	color: #000000;
+	text-shadow: 0.05em 0 0 #00ffff, -0.01em -0.01em 0 #ff0000;
+	
+}
+
+
+.about-img {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	width: 30%;
+}
+
+.about-description {
+	color: #000000;
+  font-family: "Sintony", Helvetica;
+  font-size: 24px;
+  font-weight: 300;
+  left: 50%; /* Horizontally center the element */
+  transform: translateX(-50%); /* Adjust for horizontal centering */
+  letter-spacing: 0;
+  line-height: normal;
+  position: absolute;
+  top: 40%; /* Vertically center the element */
+  text-align: center; /* Center text horizontally */
+	width: 900px;
+} 
