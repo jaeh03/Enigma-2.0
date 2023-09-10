@@ -35,3 +35,23 @@ span.input-group-addon {
     align-items: center;
     margin-top: 5%;
 }
+
+
+*{
+  /* box-sizing: border-box;
+  margin: 0;
+  padding: 0; */
+  font-family: 'Montserrat', sans-serif; 
+}
+
+.bg{
+  background-image: url("/Users/hajra/Documents/Winter 2023/Capstone/Enigma/frontend/static/frontend/75adedf52736972572b2.png"); 
+  height: 100%;
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+
+
+
+}
