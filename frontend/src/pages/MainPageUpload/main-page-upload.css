@@ -1,0 +1,131 @@
+.title {
+	font-family: 400;
+	text-align: center;
+	padding-top: 70px;
+	font-size: 35px;
+	font-weight: 300;
+}
+
+.in-seconds {
+	text-align: center;
+	color: #ff5800;
+	font-size: 35px;
+	position: relative;
+	color: #ff5800;
+	text-shadow: 0.05em 0 0 #00ffff, -0.03em -0.04em 0 #ff0000;
+	filter: blur(0.5px);
+}
+
+.app-description {
+	padding-top: 50px;
+	text-align: center;
+}
+
+.upload-section {
+	text-align: center;
+}
+
+.file-label {
+	display: inline-block;
+	/* background-color: #e14e01; */
+	background-color: transparent;
+	color: black;
+	padding: 0.5rem;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 1rem;
+	border-style: solid;
+	text-align: left;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	height: 60px;
+	border-radius: 18px;
+	justify-content: center;
+	margin-left: auto;
+	margin-right: 2rem;
+}
+
+.file-label-active {
+	border-color: #ff5800;
+	border-width: 2px;
+}
+
+.upload-icon {
+	width: 35px;
+	float: left;
+}
+
+.upload-title {
+	padding-left: 45px;
+	padding-bottom: 0px;
+}
+
+.file-label .upload-desc {
+	font-weight: 300;
+	font-size: 12px;
+	padding-left: 45px;
+	padding-top: 0px;
+	margin-top: -16px;
+}
+
+.btn-summary {
+	display: inline-block;
+	background-color: transparent;
+	color: black;
+	padding: 0.5rem;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 1rem;
+	border-style: solid;
+	width: 360px;
+	text-align: left;
+	padding-left: 20px;
+	padding-bottom: 0px;
+	height: 60px;
+	border-radius: 18px;
+	justify-content: center;
+	margin-left: auto;
+}
+
+.btn-summary-active {
+	border-color: #ff5800;
+	border-width: 2px;
+}
+
+.btn-desc {
+	font-weight: 300;
+	font-size: 12px;
+	padding-left: 45px;
+	padding-top: 0px;
+	margin-top: -16px;
+}
+
+.summary-title {
+	padding-left: 45px;
+}
+
+.btn-next-div {
+	text-align: center;
+}
+
+.btn-next {
+	display: inline-block; background-color : white;
+	color: black;
+	padding: 0.5rem;
+	font-weight: 700;
+	cursor: pointer;
+	margin-top: 1rem;
+	width: 100px;
+	height: 40px;
+	border-radius: 18px;
+	margin-left: auto;
+	border-style: none;
+	text-decoration: none;
+	background-color: white;
+}
+
+.disabled {
+	opacity: 0.5;
+	pointer-events: none;
+	/* other disabled styles here */
+}
