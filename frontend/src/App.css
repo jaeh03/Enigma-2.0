@@ -45,7 +45,7 @@ span.input-group-addon {
 }
 
 .bg{
-  background-image: url("/Users/hajra/Documents/Winter 2023/Capstone/Enigma/frontend/static/frontend/75adedf52736972572b2.png"); 
+  background-image: url("../src/images/background.png"); 
   height: 100%;
   /* Center and scale the image nicely */
   background-position: center;

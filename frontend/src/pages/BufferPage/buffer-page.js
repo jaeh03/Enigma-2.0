@@ -1,5 +1,6 @@
 import React from "react";
 import './buffer-page.css';
+import soundImg from '../../images/sound.png'
 
 function BufferPage() {
   return (

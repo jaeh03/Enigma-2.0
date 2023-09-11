@@ -5,6 +5,10 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
 import Button from "react-bootstrap/Button";
+import MainPageUpload from './pages/MainPageUpload/main-page-upload';
+import About from './pages/About/about-page';
+import AudioSummaryTranscription from './pages/AudioSummaryTranscription/audio-summary-transcription';
+import BufferPage from './pages/BufferPage/buffer-page';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom" 
 
 // // Get CSRF token from cookies
