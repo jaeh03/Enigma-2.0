@@ -1,64 +1,46 @@
 import React from "react";
-import './audio-summary-transcription.css';
+import "./audio-summary-transcription.css";
 
-function AudioSummaryTranscription (props) {
-  const { transcript, summary, timestamps } = props;
+function AudioSummaryTranscription() {
+  return (
+    <div className="summary-page">
+      <div className="export-btn-div">
+        <button className="export-btn">
+          Export Notes
+          <i
+            class="fa-regular fa-file-export"
+            style={{ marginLeft: "5px" }}
+          ></i>
+        </button>
+      </div>
 
-  const jumpToSection = (timestamp) => {
-    // Implement your jumpToSection logic here
-  };
-
-    return (
-      <div>
-        hello
+      <div className="summary-container">
+        <div className="left-half">
+          <div className="summarization">
+            <div className="text-wrapper-2">Summarization</div>
+            <textarea className="textarea" />
+          </div>
         </div>
-      
-    );
-  };
+        <div className="line-breaker"></div>
+        <div className="right-half">
+          <div className="upper-half">
+            <div className="video">
+              <div className="text-wrapper-2">Video</div>
+              <div className="textarea-video" >
+              <video className="video" controls></video>
+              </div>
+            </div>
+          </div>
+          <div className="lower-half">
+            <div className="transcription">
+              <div className="text-wrapper-2">Transcription</div>
+              <textarea className="textarea-transcript" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
-  export default AudioSummaryTranscription;
-  
-  // return (
-    
-    
-    // <div className="root">
-    //   <div>Hiiiii</div>
-    //   <audio ref={myAudio} controls className="audio-player">
-    //     <source src="/assets/summaryAudio.mp3" type="audio/mpeg" />
-    //   </audio>
-
-    //   <div className="title-area">
-    //     <div className="text-above-textarea">Transcript</div>
-    //     <div className="text-above-summary">Summarization</div>
-    //   </div>
-
-    //   <div className="parent">
-    //     <div className="container">
-    //       <textarea
-    //         className="textarea"
-    //         placeholder="Transcription"
-    //         disabled
-    //         value={transcript}
-    //       ></textarea>
-    //       <div className="line"></div>
-
-    //       <div className="summary-and-timestamps">
-    //         <ul>
-    //           {summary.split('\n').map((line, i) => (
-    //             <li key={i}>
-    //               <span className="timestamp" onClick={() => jumpToSection(timestamps[i])}>
-    //                 {timestamps[i]}
-    //               </span>{' '}
-    //               {line}
-    //             </li>
-    //           ))}
-    //         </ul>
-    //       </div>
-    //     </div>
-    //   </div>
-    // </div>
-//   );
-// }
-
-
-// export default AudioSummaryTranscription;
+export default AudioSummaryTranscription;

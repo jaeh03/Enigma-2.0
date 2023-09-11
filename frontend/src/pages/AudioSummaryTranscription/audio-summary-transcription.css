@@ -1,4 +1,4 @@
-.background {
+.summary-page{
   background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
   margin: 0;
   padding: 0;
@@ -9,144 +9,103 @@
   overflow: hidden;
 }
 
-
- .overlap-wrapper {
-  background-color: #ffffff;
-  height: 1024px;
-  width: 1821px;
+.summary-container {
+  display: flex;
+  width: 100%;
+  height: 100%;
 }
 
- .overlap {
-  background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
-  background-position: 50% 50%;
-  background-size: cover;
-  height: 1024px;
-  position: relative;
+.left-half {
+  flex: 1;
+  padding: 0 20px 0 20px;
 }
 
- .logo-instance {
-  left: 49px !important;
-  position: absolute !important;
-  top: 70px !important;
+.right-half {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
 }
 
- .nav-bar-instance {
-  left: 1349px !important;
-  position: absolute !important;
-  top: 94px !important;
+.upper-half {
+  flex: 1;
+  padding: 0 20px 0 20px;
 }
 
- .text-wrapper-2 {
-  color: #000000;
-  font-family: "Sintony", Helvetica;
-  font-size: 48px;
-  font-weight: 400;
-  left: 65px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 252px;
+.lower-half {
+  flex: 1;
+  padding: 0 20px 0 20px;
 }
 
- .text-wrapper-3 {
-  color: #000000;
-  font-family: "Sintony", Helvetica;
-  font-size: 48px;
-  font-weight: 400;
-  left: 906px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 252px;
+.summarization {
+  height: 84.5%;
+  width: 600px;
+  
 }
 
- .text-wrapper-4 {
-  color: #000000;
-  font-family: "Sintony", Helvetica;
-  font-size: 48px;
-  font-weight: 400;
-  left: 906px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 626px;
+.text-wrapper-2 {
+  font-size: 24px;
+  font-weight: bold;
+  padding-bottom: 8px;
+  
 }
 
- .rectangle {
+.textarea {
+  height: 100%;
+  width: 100%;
   background-color: #ffffff5e;
-  height: 605px;
-  left: 65px;
-  position: absolute;
-  top: 344px;
-  width: 720px;
+  border-radius: 5px;
+  resize: none;
+  border:none;
 }
 
- .rectangle-2 {
-  background-color: #ffffff5e;
-  height: 263px;
-  left: 906px;
-  position: absolute;
-  top: 339px;
-  width: 812px;
-}
-
- .rectangle-3 {
-  background-color: #ffffff5e;
-  height: 233px;
-  left: 911px;
-  position: absolute;
-  top: 713px;
-  width: 807px;
-}
-
- .overlap-group {
-  height: 71px;
-  left: 1465px;
-  position: absolute;
-  top: 207px;
-  width: 255px;
-}
-
- .next-button {
-  height: 71px;
-  left: 0;
-  position: absolute;
-  top: 0;
-  width: 255px;
-}
-
- .div-wrapper {
-  background-color: #ffffff;
-  border-radius: 30px;
-  height: 71px;
-  position: relative;
-  width: 253px;
-}
-
- .text-wrapper-5 {
-  color: #000000;
-  font-family: "Sintony", Helvetica;
-  font-size: 32px;
-  font-weight: 700;
-  left: 11px;
-  letter-spacing: 0;
-  line-height: normal;
-  position: absolute;
-  top: 14px;
-}
-
- .export {
-  height: 50px;
-  left: 201px;
-  position: absolute;
-  top: 10px;
-  width: 50px;
-}
-
- .line {
-  height: 750px;
-  left: 846px;
-  position: absolute;
-  top: 242px;
+.line-breaker {
   width: 2px;
+  background-color: #000; /* You can change the color as needed */
+  height: 87%;
+}
+
+.video {
+  height: 100%;
+  width: 500px;
+}
+
+.textarea-video {
+  height: calc(100% - 50px);
+  width: 100%;
+  background-color: #ffffff5e;
+  border-radius: 5px;
+  resize: none;
+  border:none;
+}
+
+.transcription {
+  height: 80%;
+  width: 500px;
+}
+
+.textarea-transcript {
+  height: calc(100% - 34px);
+  width: 100%;
+  background-color: #ffffff5e;
+  border-radius: 5px;
+  resize: none;
+  border:none;
+}
+
+.summary-page .export-btn{
+  background-color: #ffffff;
+  padding: 5px;
+  border-radius: 10px;
+  margin: 10px 0px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  height:30px;  
+}
+
+.summary-page .export-btn-div{
+  float: right;
+  padding-right: 6%;
 }
