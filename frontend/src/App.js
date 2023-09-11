@@ -1,5 +1,6 @@
 import "./App.css";
 import React from "react";
+import { render } from "react-dom";
 import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
@@ -40,8 +41,8 @@ export default class App extends React.Component {
           <Routes>
             <Route exact path='/' element={<MainPageUpload />} />
             <Route exact path='/about' element={<About />} />
-            {/* <Route path='/audio-summary-transcription' element={<AudioSummaryTranscription />} />
-            <Route path='/buffer-page' element={<BufferPage />} /> */}
+            <Route path='/audio-summary-transcription' element={<AudioSummaryTranscription />} />
+            <Route path='/buffer-page' element={<BufferPage />} />
                 
           </Routes>
         </Router>
