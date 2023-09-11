@@ -1,11 +1,12 @@
 import React from "react";
 import './main-page.css';
+import {useNavigate} from 'react-router-dom';
 
 function MainPageUpload ({ className }) {
 
   const selectedPage = ''; // Replace with the actual selectedPage value
   const uploadDesc = ''; // Replace with the actual uploadDesc value
-  const nextPageUrl = ''; // Replace with the actual nextPageUrl value
+  const navigate = useNavigate();
 
   const fileSelected = (event) => {
     // Implement your fileSelected logic here
@@ -13,6 +14,11 @@ function MainPageUpload ({ className }) {
 
   const selectPage = (page) => {
     // Implement your selectPage logic here
+  };
+
+  const navigateToSummarize = () => {
+    // 👇️ navigate to /audio-summary-transcription page
+    navigate('/audio-summary-transcription');
   };
   return (
     <div className={`background ${className}`}>
@@ -76,7 +82,7 @@ function MainPageUpload ({ className }) {
           </div>
           </div>
 
-          <button className="next-button">Next</button>
+          <button className="next-button" onClick={navigateToSummarize}>Next</button>
 
       
      
