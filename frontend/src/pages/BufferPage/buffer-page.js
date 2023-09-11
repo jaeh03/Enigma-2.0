@@ -1,21 +1,16 @@
 import React from "react";
 import './buffer-page.css';
 
-const BufferPage = () => {
+function BufferPage() {
   return (
-<div class="page-container">
-	<div>
-		<img class="buffer-img" src="/assets/bufferImg.png"/>
-		<div>
-			<p class="buffer-description">We are processing your file. This may <br/>take a few seconds</p>
-			<div class="buffer-description">
-				{{ loadText }}
+		<div className="summary-page">
+			<img className="sound-img" src={soundImg} alt="sound image" />
+			<div className="text-description">
+				We are processing your file. This may take <br></br>
+				a few seconds.
 			</div>
-		
 		</div>
-	</div>
-
-</div>
+		
   );
 };
 
