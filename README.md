@@ -19,7 +19,22 @@ pip install django-cors-headers
 npm install axios
 npm install react-bootstrap bootstrap
 ```
+## What Docker commands will I need to know?
 
+At the moment, you will likely only need to know 2 commands:
+
+1. The first command allows you to run your **docker-compose.yaml** script, with the "-d" prefix allowing you to run it in detached mode; effectively giving you
+   permission to use the console while your container is running.
+
+```
+docker-compose up -d
+```
+
+2. The second command will shut down the container.
+
+```
+docker-compose down
+```
 ## Frequently used commands:
 
 ### Backend:
@@ -54,23 +69,6 @@ npm start
 3. In order to make data persist across images and containers, we use **Volumes**.
 4. **In order to run Containers, Images, and Volumes**, you must run the **Docker Daemon**. Docker Desktop comes with the Daemon built-in, and is highly recommended as it allows you to view all your docker assets in one place.
 5. Docker Images are linux based, therefore we must move content into specific folder locations within the images. You can view what is inside of your image through Docker Desktop.
-
-## What Docker commands will I need to know?
-
-At the moment, you will likely only need to know 2 commands:
-
-1. The first command allows you to run your **docker-compose.yaml** script, with the "-d" prefix allowing you to run it in detached mode; effectively giving you
-   permission to use the console while your container is running.
-
-```
-docker-compose up -d
-```
-
-2. The second command will shut down the container.
-
-```
-docker-compose down
-```
 
 ## Troubleshooting Docker and Docker Compose
 
