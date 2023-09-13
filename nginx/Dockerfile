@@ -1,3 +1,13 @@
-FROM nginx:1.19.0-alpine
+# The first stage is to build the frontend
+FROM node:16-alpine as build
 
-COPY ./default.conf /etc/nginx/conf.d/default.conf
+WORKDIR /app/frontend
+COPY ../frontend/package.json ./
+RUN npm install
+COPY ../frontend .  
+RUN npm run build
+
+# The second stage is to build the web server
+FROM nginx:1.19.0-alpine
+COPY --from=build /app/frontend/build/ /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
