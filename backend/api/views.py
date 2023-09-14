@@ -11,7 +11,7 @@ openai.api_key = os.getenv('OPEN_API_KEY') # TODO: Replace .env key with your AP
 @csrf_exempt
 def hello_backend(request):
     if request.method == "POST":
-        return JsonResponse({"message": "Hello from Enigma's backend"})
+        return JsonResponse({"message": "Hello from Enigma's backend. Testing hot reload!"})
     else:
         return JsonResponse({"message": f"Invalid request method used: {request.method}"})
 
