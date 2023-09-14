@@ -24,15 +24,15 @@ const handleButtonClick = async () => {
 };
 
 export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     return (
       <div className="bg">
         <EnigmaNavbar />
-        <Button id="form_btn" variant="light" onClick={handleButtonClick}>
+        <Button id="form_btn" variant="success" onClick={handleButtonClick}>
           Click to communicate with Enigma's backend!
         </Button>
         <Routes>
