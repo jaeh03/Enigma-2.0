@@ -22,5 +22,6 @@ urlpatterns = [
     path('', include('frontend.urls')),
     path('buffer-page/', include('frontend.urls')),
     path('audio-summary-transcription/', include('frontend.urls')),
-    path('about/', include('frontend.urls'))
+    path('about/', include('frontend.urls')),
+    path('new-summary/', include('frontend.urls'))
 ]
