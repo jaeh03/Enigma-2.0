@@ -6,7 +6,7 @@ import openai
 
 # Create your views here.
 
-openai.api_key = os.getenv('OPEN_API_KEY') # TODO: Replace .env key with your API key
+openai.api_key = os.getenv('SUPERSECRETKEY') # TODO: Replace .env key with your API key
 
 @csrf_exempt
 def hello_backend(request):
