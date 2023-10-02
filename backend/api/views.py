@@ -15,7 +15,9 @@ def hello_backend(request):
     else:
         return JsonResponse({"message": f"Invalid request method used: {request.method}"})
 
-
+def isSpecialCharacter(char):
+    special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`']
+    return char in special_characters
 
 @csrf_exempt
 def summarize_text(request):
@@ -35,7 +37,13 @@ def summarize_text(request):
             presence_penalty=1
         )
         print("Response: ", response)
-        summary = response["choices"][0]["text"]
+        # Get the summary from the response and clean up whitespaces
+        summary = response["choices"][0]["text"].strip()
+
+        # Remove special characters from the front of the summary and clean up whitespaces again
+        if summary and isSpecialCharacter(summary[0]):
+            summary = summary[1:].strip()
+
         return JsonResponse({"summary": summary})
         # return JsonResponse({"message" : "Summarizing text"})
     return JsonResponse({"error": "Invalid request method"})
