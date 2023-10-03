@@ -1,11 +1,23 @@
-import React from "react";
 import "./audio-summary-transcription.css";
+import React, { useState } from 'react';
+import JsPDF from 'jspdf';
+import './PdfGenerator.css'; // Create a CSS file for styling
+
+
 
 function AudioSummaryTranscription() {
+
+
+  const generatePdf = () => {
+    const report = new JsPDF('portrait','pt','a4');
+    report.html(document.querySelector('#report')).then(() => {
+        report.save('report.pdf');
+  })};
+
   return (
     <div className="summary-page">
       <div className="export-btn-div">
-        <button className="export-btn">
+        <button className="export-btn" onClick={generatePdf}>
           Export Notes
           <i
             class="fa-regular fa-file-export"
@@ -16,9 +28,11 @@ function AudioSummaryTranscription() {
 
       <div className="summary-container">
         <div className="left-half">
-          <div className="summarization">
+          <div className="summarization" id="report">
             <div className="text-wrapper-2">Summarization</div>
-            <textarea className="textarea" />
+            <textarea 
+            className="textarea" 
+             />
           </div>
         </div>
         <div className="line-breaker"></div>
@@ -39,6 +53,10 @@ function AudioSummaryTranscription() {
           </div>
         </div>
       </div>
+
+
+  
+
     </div>
   );
 }
