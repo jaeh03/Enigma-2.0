@@ -1,5 +1,9 @@
+<<<<<<< HEAD
 # The first stage is to build the frontend
 FROM node:16-alpine as build
+=======
+FROM nginx:alpine
+>>>>>>> frontend
 
 WORKDIR /app/frontend
 COPY ../frontend/package.json ./
