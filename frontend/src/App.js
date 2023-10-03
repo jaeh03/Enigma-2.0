@@ -7,11 +7,9 @@ import AudioSummaryTranscription from "./pages/AudioSummaryTranscription/audio-s
 import BufferPage from "./pages/BufferPage/buffer-page";
 import axios from "axios";
 import EnigmaNavbar from "./components/EnigmaNavbar/Navbar";
-<<<<<<< HEAD
 import Button from "react-bootstrap/Button"; // if you are using react-bootstrap
-=======
 import NewSummary from "./pages/NewSummary/new-summary";
->>>>>>> frontend
+
 
 //TODO: implement the backend before making the post requests
 const client = axios.create({
@@ -36,9 +34,6 @@ export default class App extends React.Component {
     return (
       <div className="bg">
         <EnigmaNavbar />
-        <Button id="form_btn" variant="danger" onClick={handleButtonClick}>
-          Click to communicate with Enigma's backend!
-        </Button>
         <Routes>
           <Route exact path="/" element={<MainPageUpload />} />
           <Route path="/about" element={<About />} />
