@@ -49,7 +49,7 @@
  
 
 .background .box{
-  border: 1px solid #ccc;
+  border: 3px solid #000000;
   padding: 10px;
   text-align: center;
   align-items: center; /* Center vertically */
@@ -57,13 +57,21 @@
   border-color: #000;
   color: #000;
   border-radius: 23px;
+  background-color: transparent;
+}
+
+.background .focused-box{
+  border: 3px solid grey;
+  opacity: 0.8;
 }
 
 .background #box1 #box2 #box3{
   border: 2px solid;
   border-color: #000000;
   border-radius: 23px;
+  border: 5px solid #000000;
 }
+
 
 .background .video-link{
   background-color: #e7e7e7b0;
@@ -78,6 +86,16 @@
   float: right;
   
 
+}
+
+.background .input-file {
+  cursor: pointer;
+  opacity: 0; /* make transparent */
+  z-index: -1; /* move under anything else */
+  position: absolute; /* don't let it take up space */
+}
+::file-selector-button {
+  display: none;
 }
 
 .background .summary-title{
@@ -108,6 +126,12 @@ p {
   width: 8%;
   float: left;
   margin-left: 2%;
+}
+
+.background #file-input-label{
+  float: left;
+  margin-left: 8px;
+  font-size:24px
 }
 
 /* .background .summaryButton {
@@ -186,4 +210,7 @@ p {
     top: 727px;
     width: 3px;
   }
+
+
+
   
