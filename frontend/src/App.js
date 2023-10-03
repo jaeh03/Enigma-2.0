@@ -11,7 +11,7 @@ import Button from "react-bootstrap/Button"; // if you are using react-bootstrap
 
 //TODO: implement the backend before making the post requests
 const client = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: "http://enigma.us-east-1.elasticbeanstalk.com/api/",
 });
 
 const handleButtonClick = async () => {

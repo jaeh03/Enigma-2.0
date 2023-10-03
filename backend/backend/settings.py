@@ -32,7 +32,9 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost',
     'http://127.0.0.1',
     'http://0.0.0.0',
+    'http://enigma.us-east-1.elasticbeanstalk.com',
 ]
+
 
 CORS_ALLOW_CREDENTIALS = True
 
@@ -136,7 +138,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/usr/share/nginx/html/static'
+STATIC_ROOT = '/app/static'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
