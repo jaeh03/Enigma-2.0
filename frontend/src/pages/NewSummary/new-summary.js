@@ -42,28 +42,27 @@ function NewSummary({ className }) {
     };
 
     const [rating, setRating] = useState(null);
-  const [response, setResponse] = useState('');
+    const [response, setResponse] = useState('');
 
-  const handleRatingClick = (selectedRating) => {
-    setRating(selectedRating);
-    switch (selectedRating) {
-      case 'good':
-        setResponse('Thank you for your feedback! We are glad you found it good.');
-        break;
-      case 'great':
-        setResponse('Awesome! Your feedback is greatly appreciated.');
-        break;
-      case 'bad':
-        setResponse('We apologize for the inconvenience. We will work on improving.');
-        break;
-      default:
-        setResponse('');
-        break;
-    }
-  };
+    const handleRatingClick = (selectedRating) => {
+      setRating(selectedRating);
+      switch (selectedRating) {
+        case 'good':
+          setResponse('Thank you for your feedback! We are glad you found it good.');
+          break;
+        case 'great':
+          setResponse('Awesome! Your feedback is greatly appreciated.');
+          break;
+        case 'bad':
+          setResponse('We apologize for the inconvenience. We will work on improving.');
+          break;
+        default:
+          setResponse('');
+          break;
+      }
+    };
 
   
-
     return (
       <div className={`background ${className}`}>
         <div className="title">

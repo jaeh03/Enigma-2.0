@@ -84,7 +84,7 @@
 
 .background .feedback-group{
   width: 50%;
-  height: 30%;
+  height: 25%;
   background-color: #ffffff9c;
   margin: auto; /* Center horizontally and vertically */
   border-radius: 10px;
@@ -94,7 +94,7 @@
 
 .background .feedback-question{
   text-align: center;
-  padding-top: 50px;
+  padding-top: 40px;
 }
 
 .background .response-div{
