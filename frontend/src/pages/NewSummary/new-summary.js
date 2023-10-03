@@ -1,9 +1,10 @@
 import React from "react";
-import './new-summary.css';
-import {useNavigate} from 'react-router-dom';
-import youtubeIcon from '../../images/youtube.svg'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import './new-summary.css';
+import {useNavigate} from 'react-router-dom';
+
+
 
 
 function NewSummary({ className }) {
@@ -28,14 +29,9 @@ function NewSummary({ className }) {
         <p className="text-wrapper">New Summary</p>
         <div class="container">
           <div class="box" id="box1">
-          {/* <img
-            className="you-tube"
-            alt="You tube"
-            src="https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/youtube.svg"
-          /> */}
-          {/* <img className="yotube-img" src={youtubeIcon} alt="youtube icon" /> */}
           <FontAwesomeIcon icon={faYoutube} />
           <textarea className="text-area" placeholder="video link" />
+          Youtube
           </div>
           <div class="box" id="box2">
             Upload

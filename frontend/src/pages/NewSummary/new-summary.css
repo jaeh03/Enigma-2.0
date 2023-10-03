@@ -122,6 +122,20 @@
     align-items: center;
     text-align: center;
   }
+
+  .background .box{
+    border: 4px solid;
+    border-color: #000000;
+    border-radius: 20px;
+    height: 50px;
+    left: 95px;
+    position: absolute;
+    width: 298px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
   
   .background .input-rect:nth-child(1) {
     left: 23%;
