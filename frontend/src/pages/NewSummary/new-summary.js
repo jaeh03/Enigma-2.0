@@ -1,7 +1,8 @@
 import React from "react";
-import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import { faUpload } from '@fortawesome/free-solid-svg-icons';
+import { faFileLines } from '@fortawesome/free-solid-svg-icons';
 import './new-summary.css';
 import {useNavigate} from 'react-router-dom';
 
@@ -27,18 +28,23 @@ function NewSummary({ className }) {
     };
     return (
       <div className={`background ${className}`}>
-        <p className="text-wrapper">New Summary</p>
+        <div className="title">
+        <h1 className="text-wrapper">New Summary</h1>
+        </div>
+        {/* Three Boxes (2 Buttons and one text area) */}
         <div class="container">
           <div class="box" id="box1">
-          <FontAwesomeIcon icon={faYoutube} />
-          <textarea className="text-area" placeholder="video link" />
-          Youtube
+          <FontAwesomeIcon class="icon-img" icon={faYoutube} />
+          <textarea className="video-link" placeholder="video link" />
+          
           </div>
           <div class="box" id="box2">
+          <FontAwesomeIcon class="icon-img2" icon={faUpload} />
             Upload
           </div>
-          <button class="summaryButton" id="box3">
-            Summary
+          <button class="box" id="box3">
+            <FontAwesomeIcon class="icon-img3" icon={faFileLines} />
+            <p className="summary-title">Summary</p>
           </button>
         </div>
 
