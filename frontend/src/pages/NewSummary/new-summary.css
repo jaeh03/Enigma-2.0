@@ -60,6 +60,48 @@
   background-color: transparent;
 }
 
+.background .feedback-container{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding: 20px;
+  margin-top: 10%;
+  align-items: center;
+  margin: auto;
+}
+.background .feedbackBtn{
+  border: none;
+  padding: 10px;
+  text-align: center;
+  align-items: center; /* Center vertically */
+  flex: 1; /* Equal width for all boxes */
+  color: #000;
+  border-radius: 23px;
+  background-color: rgba(255, 255, 255, 0.791);
+  margin: 5px; /* Add margin for spacing between buttons */
+  margin-top: 20px;
+}
+
+.background .feedback-group{
+  width: 50%;
+  height: 30%;
+  background-color: #ffffff9c;
+  margin: auto; /* Center horizontally and vertically */
+  border-radius: 10px;
+  margin-top: 5%;
+
+}
+
+.background .feedback-question{
+  text-align: center;
+  padding-top: 50px;
+}
+
+.background .response-div{
+  text-align: center;
+  margin-top: 5%;
+}
+
 .background .focused-box{
   border: 3px solid grey;
   opacity: 0.8;

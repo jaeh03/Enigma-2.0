@@ -7,13 +7,10 @@ import './new-summary.css';
 import {useNavigate} from 'react-router-dom';
 import { useState } from "react";
 
-
-
-
-
 function NewSummary({ className }) {
-    const selectedPage = ''; // Replace with the actual selectedPage value
-    const uploadDesc = ''; // Replace with the actual uploadDesc value
+    // const selectedPage = ''; // Replace with the actual selectedPage value
+    // const uploadDesc = ''; // Replace with the actual uploadDesc value
+
     const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(false); // State to disable all buttons
     const [selectedBox, setSelectedBox] = useState(null);
@@ -43,6 +40,27 @@ function NewSummary({ className }) {
   
       // Additional validation logic
     };
+
+    const [rating, setRating] = useState(null);
+  const [response, setResponse] = useState('');
+
+  const handleRatingClick = (selectedRating) => {
+    setRating(selectedRating);
+    switch (selectedRating) {
+      case 'good':
+        setResponse('Thank you for your feedback! We are glad you found it good.');
+        break;
+      case 'great':
+        setResponse('Awesome! Your feedback is greatly appreciated.');
+        break;
+      case 'bad':
+        setResponse('We apologize for the inconvenience. We will work on improving.');
+        break;
+      default:
+        setResponse('');
+        break;
+    }
+  };
 
   
 
@@ -90,6 +108,26 @@ function NewSummary({ className }) {
         <button className="next-button" onClick={navigateToSummarize}>
           Next
         </button>
+
+        {/* Feedback Questionaire */}
+
+      <div class="feedback-group">
+        <div >
+        <h2 class="feedback-question">How would you rate your summarization today?</h2>
+        </div>
+        {!rating && (
+      <div class="feedback-container"> 
+        <button className="feedbackBtn" onClick={() => handleRatingClick('good')}>Good</button>
+        <button className="feedbackBtn" onClick={() => handleRatingClick('great')}>Great</button>
+        <button className="feedbackBtn" onClick={() => handleRatingClick('bad')}>Bad</button>
+      </div>
+      )}
+      {rating && (
+        <div className="response-div">
+          <p>{response}</p>
+        </div>
+      )}
+      </div>
       </div>
     );
 }
