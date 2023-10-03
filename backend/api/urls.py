@@ -5,4 +5,6 @@ urlpatterns = [
     path('summarize/', views.summarize_text, name='summarize_text'),
     path('hello/', views.hello_backend, name='hello_backend'),
     path('transcribe-audio/', views.transcribe_audio, name='transcribe_audio'),  
+    path('auto-chapter/', views.auto-chapter, name='auto-chapter')
+
 ]

@@ -47,3 +47,6 @@ openai==0.28.0
 #The requests library in Python is a widely-used package that simplifies the process of sending HTTP requests to web services and APIs. 
 #It provides a convenient and user-friendly way to interact with web resources and retrieve data from remote servers
 requests==2.26.0
+
+#audio intelligence
+assemblyai==0.4.0  # Replace with the latest version if needed
