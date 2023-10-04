@@ -126,7 +126,6 @@ while True:
 @csrf_exempt
 def auto_chapter(request):
     # Replace with your AssemblyAI API token
-    #YOUR_API_TOKEN = "5108746344074b748a78b229c6b4b87d"
 
     # API endpoint and headers
     base_url = "https://api.assemblyai.com/v2"
