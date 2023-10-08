@@ -1,7 +1,10 @@
 from django.urls import path
-from .views import summarize_text, hello_backend
+from . import views  # Import the views module from the current directory
 
 urlpatterns = [
-    path('summarize/', summarize_text, name='summarize_text'),
-    path('hello/', hello_backend, name='hello_backend')  
+    path('summarize/', views.summarize_text, name='summarize_text'),
+    path('hello/', views.hello_backend, name='hello_backend'),
+    path('transcribe-audio/', views.transcribe_audio, name='transcribe_audio'),  
+    path('auto-chapter/', views.auto-chapter, name='auto-chapter')
+
 ]
