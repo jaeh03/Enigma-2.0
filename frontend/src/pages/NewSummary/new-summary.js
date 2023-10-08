@@ -54,7 +54,7 @@ function NewSummary({ className }) {
           setResponse('Awesome! Your feedback is greatly appreciated.');
           break;
         case 'bad':
-          setResponse('We apologize for the inconvenience. We will work on improving.');
+          setResponse('We are sorry for your inconvience');
           break;
         default:
           setResponse('');
