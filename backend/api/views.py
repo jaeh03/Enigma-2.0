@@ -1,13 +1,21 @@
+#import assemblyai as aai
 import os
+import openai
+import requests
+import time
+import traceback
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-import openai
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 
-openai.api_key = os.getenv('OPEN_API_KEY') # TODO: Replace .env key with your API key
+openai.api_key = os.getenv('SUPERSECRETKEY') # TODO: Replace .env key with your API key
 
+#aai.settings.api_key = os.getenv('ASSEMBLYAI_API_KEY')
 @csrf_exempt
 def hello_backend(request):
     if request.method == "POST":
@@ -39,3 +47,31 @@ def summarize_text(request):
         summary = response["choices"][0]["text"]
         return JsonResponse({"summary": summary})
     return JsonResponse({"error": "Invalid request method"})
+
+@csrf_exempt
+def transcribe_audio(request):
+    if request.method == "POST":
+        try:
+            # Check if an audio file was uploaded
+            if 'audio_file' in request.FILES:
+                audio_file = request.FILES['audio_file']
+
+                # Set your OpenAI API key from the environment variable
+                openai.api_key = os.getenv('SUPERSECRETKEY')
+
+                # Transcribe the audio using the OpenAI Audio API
+                response = openai.Audio.transcribe("whisper-1", audio_file)
+
+                # Extract the transcribed text from the response
+                transcription = response["text"]
+
+                # Save the transcription to your database or return it as JSON
+                return JsonResponse({'transcription': transcription})
+            else:
+                return JsonResponse({'error': 'No audio file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            # Handle exceptions and print traceback for debugging
+            traceback.print_exc()
+            return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+    else:
+        return JsonResponse({'error': 'Invalid request method'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

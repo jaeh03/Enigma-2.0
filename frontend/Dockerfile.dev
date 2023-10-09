@@ -1,0 +1,18 @@
+# Use the node 16 alpine image
+FROM node:16-alpine
+
+# Set working directory in the container
+WORKDIR /app
+
+# Install app dependencies by copying
+# package.json and package-lock.json first
+COPY ./package.json .
+
+# Install dependencies
+RUN npm install
+
+# Copy all files
+COPY . . 
+
+# Start the React development server
+CMD ["npm", "start"]
