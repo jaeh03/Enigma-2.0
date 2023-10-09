@@ -39,7 +39,7 @@
 
 .summarization {
   height: 84.5%;
-  width: 600px;
+  width: 100%;
   
 }
 
@@ -67,7 +67,7 @@
 
 .video {
   height: 100%;
-  width: 500px;
+  width: 100%;
 }
 
 .textarea-video {
@@ -81,7 +81,7 @@
 
 .transcription {
   height: 80%;
-  width: 500px;
+  width: 100%;
 }
 
 .textarea-transcript {
@@ -107,5 +107,5 @@
 
 .summary-page .export-btn-div{
   float: right;
-  padding-right: 6%;
+  padding-right: 2%;
 }

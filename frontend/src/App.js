@@ -8,6 +8,7 @@ import BufferPage from "./pages/BufferPage/buffer-page";
 import axios from "axios";
 import EnigmaNavbar from "./components/EnigmaNavbar/Navbar";
 import Button from "react-bootstrap/Button"; // if you are using react-bootstrap
+import NewSummary from "./pages/NewSummary/new-summary";
 
 //TODO: implement the backend before making the post requests
 const client = axios.create({
@@ -24,9 +25,6 @@ const handleButtonClick = async () => {
 };
 
 export default class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   render() {
     return (
@@ -43,6 +41,7 @@ export default class App extends React.Component {
             element={<AudioSummaryTranscription />}
           />
           <Route path="/buffer-page" element={<BufferPage />} />
+          <Route path="/new-summary" element={<NewSummary />} />
         </Routes>
       </div>
     );
