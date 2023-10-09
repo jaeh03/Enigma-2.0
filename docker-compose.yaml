@@ -1,9 +1,7 @@
 version: "3.7"
 services:
   nginx:
-    build:
-      context: .
-      dockerfile: ./nginx/Dockerfile
+    image: 452573839730.dkr.ecr.us-east-1.amazonaws.com/enigma-nginx:https
     ports:
       - 80:80
     volumes:
@@ -13,13 +11,10 @@ services:
       - backend
 
   backend:
-    build:
-      context: ./backend
-      dockerfile: Dockerfile
+    image: 452573839730.dkr.ecr.us-east-1.amazonaws.com/enigma-backend:https
     env_file:
       - .env
     volumes:
-      - ./backend:/app
       - static_volume:/app/static
     ports:
       - "8000:8000"

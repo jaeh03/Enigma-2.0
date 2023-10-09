@@ -12,7 +12,7 @@ import NewSummary from "./pages/NewSummary/new-summary";
 
 //TODO: implement the backend before making the post requests
 const client = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
+  baseURL: "https://enigmatldv.me/api/",
 });
 
 const handleButtonClick = async () => {
@@ -25,15 +25,12 @@ const handleButtonClick = async () => {
 };
 
 export default class App extends React.Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   render() {
     return (
       <div className="bg">
         <EnigmaNavbar />
-        <Button id="form_btn" variant="danger" onClick={handleButtonClick}>
+        <Button id="form_btn" variant="success" onClick={handleButtonClick}>
           Click to communicate with Enigma's backend!
         </Button>
         <Routes>

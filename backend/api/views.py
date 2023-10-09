@@ -23,7 +23,8 @@ def hello_backend(request):
     else:
         return JsonResponse({"message": f"Invalid request method used: {request.method}"})
 
-
+def test_view(request):
+    return JsonResponse({"message": "Test successful!"})
 
 @csrf_exempt
 def summarize_text(request):
