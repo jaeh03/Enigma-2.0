@@ -20,6 +20,11 @@ function MainPageUpload ({ className }) {
     // 👇️ navigate to /audio-summary-transcription page
     navigate('/audio-summary-transcription');
   };
+
+  const navigateToTextSummarize = () => {
+    // 👇️ navigate to /audio-summary-transcription page
+    navigate('/text-summary');
+  };
   return (
     <div className={`background ${className}`}>
       <p className="text-wrapper">try now to get lectures summarized</p>
@@ -59,6 +64,7 @@ function MainPageUpload ({ className }) {
               onClick={() => selectPage('buffer')}
               hidden
             />
+            <button className="next-button" onClick={navigateToTextSummarize}>test text summary</button>
             <label
               htmlFor="upload"
               className={`file-label ${selectedPage === 'buffer' ? 'file-label-active' : ''}`}

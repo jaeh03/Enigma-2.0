@@ -26,11 +26,36 @@ def hello_backend(request):
 def test_view(request):
     return JsonResponse({"message": "Test successful!"})
 
+def isSpecialCharacter(char):
+    special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`']
+    return char in special_characters
+
+@csrf_exempt
+def summarize_selector(request):
+    if request.method == "POST":
+        try:
+            data = request.data
+            text = data.get("text", "")
+            summary_type = data.get("summaryType", "paragraph")
+
+            if summary_type == "paragraph":
+                summarize_text(text)
+            elif summary_type == "point":
+                summarize_text_point(text)
+            else:
+                return JsonResponse({"error": "Invalid summarization type"})
+            
+        except Exception as e:
+            print(e)
+            return JsonResponse({"error": "Something went wrong"})
+    return JsonResponse({"error": "Invalid request method (POST only)"})
+
 @csrf_exempt
 def summarize_text(request):
     if request.method == "POST":
         # Log the raw request data
         raw_data = request.body.decode("utf-8")
+        
         print("Raw request data:", raw_data)
 
         # Parse the JSON data
@@ -38,14 +63,66 @@ def summarize_text(request):
             model="text-davinci-003",
             prompt=raw_data + "\n\nTL;DR",
             temperature=0.7,
-            max_tokens=60,
+            max_tokens=100,
             top_p=1,
             frequency_penalty=0,
             presence_penalty=1
         )
         print("Response: ", response)
-        summary = response["choices"][0]["text"]
+        # Get the summary from the response and clean up whitespaces
+        summary = response["choices"][0]["text"].strip()
+
+        # Remove special characters from the front of the summary and clean up whitespaces again
+        if summary and isSpecialCharacter(summary[0]):
+            summary = summary[1:].strip()
+
         return JsonResponse({"summary": summary})
+        # return JsonResponse({"message" : "Summarizing text"})
+    return JsonResponse({"error": "Invalid request method"})
+
+def summarize_text_point(request):
+    if request.method == "POST":
+        # # Log the raw request data
+        # raw_data = request.body.decode("utf-8")
+        # print("Raw request data:", raw_data)
+
+        # # Parse the JSON data
+        # response = openai.Completion.create(
+        #     model="text-davinci-003",
+        #     prompt=raw_data + "\n\nTL;DR in point form",
+        #     temperature=0.7,
+        #     max_tokens=60,
+        #     top_p=1,
+        #     frequency_penalty=0,
+        #     presence_penalty=1
+        # )
+        # print("Response: ", response)
+        # summary = response["choices"][0]["text"]
+        # return JsonResponse({"summary": summary})
+        return JsonResponse({"message" : "Summarizing text in point form"})
+    return JsonResponse({"error": "Invalid request method"})
+
+@csrf_exempt
+def summarize_text_transcript(request):
+    if request.method == "POST":
+        # # Log the raw request data
+        # raw_data = request.body.decode("utf-8")
+        # print("Raw request data:", raw_data)
+
+        # # Parse the JSON data
+        # response = openai.Completion.create(
+        #     model="text-davinci-003",
+        #     prompt=raw_data + "\n\nTL;DR in point form",
+        #     temperature=0.7,
+        #     max_tokens=60,
+        #     top_p=1,
+        #     frequency_penalty=0,
+        #     presence_penalty=1
+        # )
+        # print("Response: ", response)
+        # summary = response["choices"][0]["text"]
+        # return JsonResponse({"summary": summary})
+        return JsonResponse({"message" : "Summarizing text transcript"})
     return JsonResponse({"error": "Invalid request method"})
 
 @csrf_exempt

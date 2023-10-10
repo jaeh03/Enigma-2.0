@@ -5,6 +5,7 @@ import MainPageUpload from "./pages/MainPageUpload/main-page-upload";
 import About from "./pages/About/about-page";
 import AudioSummaryTranscription from "./pages/AudioSummaryTranscription/audio-summary-transcription";
 import BufferPage from "./pages/BufferPage/buffer-page";
+import TextSummary from "./pages/TextSummary/text-summary";
 import axios from "axios";
 import EnigmaNavbar from "./components/EnigmaNavbar/Navbar";
 import Button from "react-bootstrap/Button"; // if you are using react-bootstrap
@@ -42,6 +43,7 @@ export default class App extends React.Component {
           />
           <Route path="/buffer-page" element={<BufferPage />} />
           <Route path="/new-summary" element={<NewSummary />} />
+          <Route path="/text-summary" element={<TextSummary />} />
         </Routes>
       </div>
     );
