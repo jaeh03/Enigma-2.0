@@ -20,6 +20,7 @@ DEBUG = os.getenv('DEBUG')
 
 #UNCOMMENT TO USE IN DEV
 #ALLOWED_HOSTS = ['localhost']
+
 #UNCOMMENT TO USE IN PROD
 ALLOWED_HOSTS = ['enigmatldv.me', 'www.enigmatldv.me', 'enigma.us-east-1.elasticbeanstalk.com']
 
