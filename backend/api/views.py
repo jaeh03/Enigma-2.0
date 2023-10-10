@@ -10,6 +10,8 @@ from django.views.decorators.csrf import csrf_exempt
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
+from pytube import YouTube
+from io import BytesIO
 
 # Create your views here.
 
@@ -152,3 +154,15 @@ def transcribe_audio(request):
             return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return JsonResponse({'error': 'Invalid request method'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+    
+@csrf_exempt
+@api_view(['GET'])
+def dlAudioTest(url):
+    yt = YouTube("https://www.youtube.com/watch?v=tY_3bDHdiiA")
+    video = yt.streams.filter(only_audio=True).first()
+    audio = BytesIO()
+    video.stream_to_buffer(audio)
+    with open('audio.mp3', 'wb') as f:
+        f.write(audio.getbuffer())
+
+    return Response({'response': 'download worked', 'audio': audio}, status=status.HTTP_200_OK)
