@@ -7,10 +7,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 #UNCOMMENT TO USE IN DEV
-ALLOWED_HOSTS = ['localhost']
+#ALLOWED_HOSTS = ['localhost']
 
 #UNCOMMENT TO USE IN PROD
-#ALLOWED_HOSTS = ['enigmatldv.me', 'www.enigmatldv.me', 'enigma.us-east-1.elasticbeanstalk.com']
+ALLOWED_HOSTS = ['enigmatldv.me', 'www.enigmatldv.me', 'enigma.us-east-1.elasticbeanstalk.com']
 
 # If using a reverse proxy/load balancer, ensure Django respects the 
 # X-Forwarded-Proto header to know if a request is HTTPS.
