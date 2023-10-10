@@ -1,8 +1,13 @@
-# Use Nginx official image as the base image
+# The first stage is to build the frontend
+FROM node:16 as build
+
+WORKDIR /app/frontend
+COPY ../frontend/package.json ./
+RUN npm install
+COPY ../frontend .  
+RUN npm run build
+
+# The second stage is to build the web server
 FROM nginx:alpine
-
-# Copy the React build directory to Nginx's serve directory
-COPY frontend/build/ /usr/share/nginx/html/
-
-# Copy the Nginx configuration file
-COPY nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY --from=build /app/frontend/build/ /usr/share/nginx/html
+CMD ["nginx", "-g", "daemon off;"]
