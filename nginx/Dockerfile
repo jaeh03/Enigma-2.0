@@ -1,5 +1,6 @@
 # The first stage is to build the frontend
-FROM node:16-alpine as build
+FROM node:16 as build
+
 
 WORKDIR /app/frontend
 COPY ../frontend/package.json ./
@@ -8,6 +9,6 @@ COPY ../frontend .
 RUN npm run build
 
 # The second stage is to build the web server
-FROM nginx:1.19.0
+FROM nginx:alpine
 COPY --from=build /app/frontend/build/ /usr/share/nginx/html
 CMD ["nginx", "-g", "daemon off;"]

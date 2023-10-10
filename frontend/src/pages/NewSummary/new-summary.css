@@ -1,0 +1,258 @@
+.background {
+    background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    height: 100vh;
+    overflow: hidden;
+  }
+  
+  .background .text-wrapper {
+    color: #000000;
+    font-family: "Sintony", Helvetica;
+    font-size: 50px;
+    font-weight: 400;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 20%; /* Vertically center the element */
+    text-align: center; /* Center text horizontally */
+    white-space: nowrap;
+  }
+  
+  .background .div {
+    color: #ff385b;
+    font-family: "Sintony", Helvetica;
+    font-size: 60px;
+    font-weight: 400;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 35%; /* Vertically center the element */
+    text-align: center; /* Center text horizontally */
+  }
+  
+  .background .container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 20px;
+    margin-top: 10%;
+    align-items: center;
+}
+ 
+
+.background .box{
+  border: 3px solid #000000;
+  padding: 10px;
+  text-align: center;
+  align-items: center; /* Center vertically */
+  flex: 1; /* Equal width for all boxes */
+  border-color: #000;
+  color: #000;
+  border-radius: 23px;
+  background-color: transparent;
+}
+
+.background .feedback-container{
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding: 20px;
+  margin-top: 10%;
+  align-items: center;
+  margin: auto;
+}
+.background .feedbackBtn{
+  border: none;
+  padding: 10px;
+  text-align: center;
+  align-items: center; /* Center vertically */
+  flex: 1; /* Equal width for all boxes */
+  color: #000;
+  border-radius: 23px;
+  background-color: rgba(255, 255, 255, 0.791);
+  margin: 5px; /* Add margin for spacing between buttons */
+  margin-top: 20px;
+}
+
+.background .feedback-group{
+  width: 50%;
+  height: 25%;
+  background-color: #ffffff9c;
+  margin: auto; /* Center horizontally and vertically */
+  border-radius: 10px;
+  margin-top: 5%;
+
+}
+
+.background .feedback-question{
+  text-align: center;
+  padding-top: 40px;
+}
+
+.background .response-div{
+  text-align: center;
+  margin-top: 5%;
+}
+
+.background .focused-box{
+  border: 3px solid grey;
+  opacity: 0.8;
+}
+
+.background #box1 #box2 #box3{
+  border: 2px solid;
+  border-color: #000000;
+  border-radius: 23px;
+  border: 5px solid #000000;
+}
+
+
+.background .video-link{
+  background-color: #e7e7e7b0;
+  border-radius: 12px;
+  height: 35px;
+  width: 85%;
+  padding: 8px 8px 8px;
+  font-size: 16px;
+  box-sizing: border-box;
+  border: none;
+  resize: none;
+  float: right;
+  
+
+}
+
+.background .input-file {
+  cursor: pointer;
+  opacity: 0; /* make transparent */
+  z-index: -1; /* move under anything else */
+  position: absolute; /* don't let it take up space */
+}
+::file-selector-button {
+  display: none;
+}
+
+.background .summary-title{
+  float: left;
+  margin-left: 5%;
+  text-size-adjust: 16px;
+  font-size: 24px;
+}
+
+p {
+  margin-top: 0;
+  margin-bottom: 0rem;
+}
+
+.background .icon-img{
+  width: 12%;
+  float: left;
+  margin-left: 2%;
+}
+
+.background .icon-img2{
+  width: 8%;
+  float: left;
+  margin-left: 2%;
+}
+
+.background .icon-img3{
+  width: 8%;
+  float: left;
+  margin-left: 2%;
+}
+
+.background #file-input-label{
+  float: left;
+  margin-left: 8px;
+  font-size:24px
+}
+
+/* .background .summaryButton {
+    background-color: #e74c3c;
+    color: #fff;
+    text-align: center;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+} */
+
+
+ 
+  
+    
+  .background .line {
+    height: 2px;
+    width: 50px; /* Adjust the width of the line divider as needed */
+    background-color: #000; /* Adjust the color as needed */
+  }
+  
+  /* .background .text-area {
+    background-color: #e7e7e7b0;
+    border-radius: 12px;
+    height: 35px;
+    left: 55px;
+    position: absolute;
+    top: 8px;
+    width: 224px;
+    padding: 8px 8px;
+    font-size: 16px;
+    box-sizing: border-box;
+    border: none;
+    resize: none;
+  } */
+  
+  .background .next-button {
+    all: unset;
+    box-sizing: border-box;
+    height: 45px;
+    width: 15%;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 85%; /* Vertically center the element */
+    text-align: center; /* Center text horizontally */
+    background-color: #ffffff;
+    padding: 10px 0px;
+    border-radius: 15px;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+  }
+  
+  
+  .background .text-wrapper-3 {
+    color: #000000;
+    font-family: "Sintony", Helvetica;
+    font-size: 40px;
+    font-weight: 700;
+    left: 82px;
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 10px;
+  }
+  
+  .background .line {
+    height: 140px;
+    left: 910px;
+    position: absolute;
+    top: 727px;
+    width: 3px;
+  }
+
+
+
+  
