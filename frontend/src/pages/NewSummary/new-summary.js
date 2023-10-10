@@ -58,7 +58,7 @@ function NewSummary({ className }) {
 
       // Handle file selection here
   
-      // Additional validation logic
+   
     };
 
     const [rating, setRating] = useState(null);
