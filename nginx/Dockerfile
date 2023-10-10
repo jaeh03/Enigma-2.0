@@ -1,7 +1,6 @@
 # The first stage is to build the frontend
 FROM node:16 as build
 
-
 WORKDIR /app/frontend
 COPY ../frontend/package.json ./
 RUN npm install
