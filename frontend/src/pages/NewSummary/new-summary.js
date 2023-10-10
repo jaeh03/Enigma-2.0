@@ -104,7 +104,6 @@ function NewSummary({ className }) {
           disabled={isDisabled}>
 
           <FontAwesomeIcon class="icon-img2" icon={faUpload} />
-          {/* <p id="file-label">{selectedName || "Click box to upload"}</p> */}
           <input className="input-file"
             type="file"
             id="file-input"
