@@ -20,10 +20,31 @@ def isSpecialCharacter(char):
     return char in special_characters
 
 @csrf_exempt
+def summarize_selector(request):
+    if request.method == "POST":
+        try:
+            data = request.data
+            text = data.get("text", "")
+            summary_type = data.get("summaryType", "paragraph")
+
+            if summary_type == "paragraph":
+                summarize_text(text)
+            elif summary_type == "point":
+                summarize_text_point(text)
+            else:
+                return JsonResponse({"error": "Invalid summarization type"})
+            
+        except Exception as e:
+            print(e)
+            return JsonResponse({"error": "Something went wrong"})
+    return JsonResponse({"error": "Invalid request method (POST only)"})
+
+@csrf_exempt
 def summarize_text(request):
     if request.method == "POST":
         # Log the raw request data
         raw_data = request.body.decode("utf-8")
+        
         print("Raw request data:", raw_data)
 
         # Parse the JSON data

@@ -10,11 +10,12 @@ const client = axios.create({
 const TextSummary = () => {
   const [inputText, setInputText] = useState("");
   const [outputText, setOutputText] = useState("");
+  const [isPointForm, setIsPointForm] = useState(false);
   
   const SummarizeText = async () => {
     setOutputText("Summarizing...");
     try{
-      const response = await client.post("/summarize/", {text: inputText});
+      const response = await client.post("/summarize/", {text: inputText, summaryType: isPointForm ? "point" : "paragraph"});
       console.log(response.data.summary);
       setOutputText(response.data.summary);
     } catch (error) {
@@ -46,7 +47,7 @@ const TextSummary = () => {
         <div className="button-container">
           <button className="btn btn-light btn-lg fs-3" onClick={SummarizeText}>Summarize</button>
           <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
+            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={isPointForm} onChange={() => setIsPointForm(!isPointForm)} />
             <label className="form-check-label" for="flexSwitchCheckDefault">Point Form</label>
           </div>
         </div>
