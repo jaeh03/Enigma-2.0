@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faYoutube } from '@fortawesome/free-brands-svg-icons';
+import {faFileWaveform} from '@fortawesome/free-solid-svg-icons';
 import { Nav } from "react-bootstrap";
 import { MenuItems } from "./MenuItems";
 import { Button } from "./Button";
@@ -13,9 +16,11 @@ class EnigmaNavbar extends Component {
   render() {
     return (
       <nav className="nav-bar inter-semi-bold-black-32px">
-        <h1 className="navbar-logo">
-          Enigma AI<i className="fab fa-react"></i>
+      <a className="navbar-logo" href="/">
+        <h1>
+          Enigma TLDV
         </h1>
+      </a>
         <div className="menu-icon" onClick={this.handleClick}>
           <i
             className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}
