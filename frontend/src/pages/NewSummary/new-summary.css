@@ -221,7 +221,7 @@ p {
     letter-spacing: 0;
     line-height: normal;
     position: absolute;
-    top: 85%; /* Vertically center the element */
+    top: 90%; /* Vertically center the element */
     text-align: center; /* Center text horizontally */
     background-color: #ffffff;
     padding: 10px 0px;

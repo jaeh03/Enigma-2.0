@@ -16,6 +16,12 @@
   object-fit: cover;
   height: 58px;
   font-size: 40px;
+  text-decoration: none;
+  color: black;
+}
+
+.icon-img{
+  width: 10%;
 }
 
 .fa-react {
@@ -25,13 +31,14 @@
 
 .nav-menu{
   display: grid;
-  grid-template-columns: repeat(5, auto);
+  grid-template-columns: repeat(2, auto);
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 70vw;
+  width: 78vw;
   justify-content: end;
   margin-top: 40px;
+  font-size: 20px;
 }
 
 
@@ -45,7 +52,7 @@
 }
 
 .nav-links:hover{
-  background-color: black;
+  background-color: white;
   border-radius: 4px;
   transition: all 0.2s ease-out;
 }

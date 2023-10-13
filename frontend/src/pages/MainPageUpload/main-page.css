@@ -1,4 +1,4 @@
-.background {
+.main {
   background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
   margin: 0;
   padding: 0;
@@ -9,7 +9,7 @@
   overflow: hidden;
 }
 
-.background .text-wrapper {
+.main .text-wrapper {
   color: #000000;
   font-family: "Sintony", Helvetica;
   font-size: 50px;
@@ -24,7 +24,7 @@
   white-space: nowrap;
 }
 
-.background .div {
+.main .div {
   color: #ff385b;
   font-family: "Sintony", Helvetica;
   font-size: 60px;
@@ -34,11 +34,11 @@
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 35%; /* Vertically center the element */
+  top: 30%; /* Vertically center the element */
   text-align: center; /* Center text horizontally */
 }
 
-.background .p {
+.main .p {
   color: #000000;
   font-family: "Sintony", Helvetica;
   font-size: 24px;
@@ -48,19 +48,117 @@
   letter-spacing: 0;
   line-height: normal;
   position: absolute;
-  top: 48%; /* Vertically center the element */
+  top: 40%; /* Vertically center the element */
   text-align: center; /* Center text horizontally */
   white-space: nowrap;
 }
 
-.background .container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px; /* Adjust the gap between elements as needed */
+.main .container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 20px;
+    margin-top: 23%;
+    align-items: center;
 }
 
-.background .input-rect {
+
+.main .box{
+	border: 3px solid #000000;
+	padding: 10px;
+	text-align: center;
+	align-items: center; /* Center vertically */
+	flex: 1; /* Equal width for all boxes */
+	border-color: #000;
+	color: #000;
+	border-radius: 23px;
+	background-color: transparent;
+  }
+
+  .main .focused-box{
+	border: 3px solid grey;
+	opacity: 0.8;
+  }
+  
+  .main #box1 #box2 #box3{
+	border: 2px solid;
+	border-color: #000000;
+	border-radius: 23px;
+	border: 5px solid #000000;
+  }
+  
+  
+  .main .video-link{
+	background-color: #e7e7e7b0;
+	border-radius: 12px;
+	height: 35px;
+	width: 85%;
+	padding: 8px 8px 8px;
+	font-size: 16px;
+	box-sizing: border-box;
+	border: none;
+	resize: none;
+	float: right;
+	
+  }
+  
+  .main .input-file {
+	cursor: pointer;
+	opacity: 0; /* make transparent */
+	z-index: -1; /* move under anything else */
+	position: absolute; /* don't let it take up space */
+  }
+  ::file-selector-button {
+	display: none;
+  }
+
+  .main .icon-img{
+	width: 12%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main .icon-img2{
+	width: 8%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main .icon-img3{
+	width: 8%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main #file-input-label{
+	float: left;
+	margin-left: 8px;
+	font-size:24px
+  }
+
+  .main .next-button {
+    all: unset;
+    box-sizing: border-box;
+    height: 45px;
+    width: 15%;
+    left: 50%; /* Horizontally center the element */
+    transform: translateX(-50%); /* Adjust for horizontal centering */
+    letter-spacing: 0;
+    line-height: normal;
+    position: absolute;
+    top: 80%; /* Vertically center the element */
+    text-align: center; /* Center text horizontally */
+    background-color: #ffffff;
+    padding: 10px 0px;
+    border-radius: 15px;
+    margin: 10px 0px;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: 700;
+  }
+
+
+.main .input-rect {
   border: 4px solid;
   border-color: #000000;
   border-radius: 20px;
@@ -74,22 +172,22 @@
   text-align: center;
 }
 
-.background .input-rect:nth-child(1) {
+.main .input-rect:nth-child(1) {
   left: 23%;
   top: 70%; /* Adjust the top position as needed */
 }
 
-.background .input-rect:nth-child(2) {
+.main .input-rect:nth-child(2) {
   left: 53%;
   top: 70%; /* Adjust the top position as needed */
 }
-.background .line {
+.main .line {
   height: 2px;
   width: 50px; /* Adjust the width of the line divider as needed */
   background-color: #000; /* Adjust the color as needed */
 }
 
-.background .text-area {
+.main .text-area {
   background-color: #e7e7e7b0;
   border-radius: 12px;
   height: 35px;
@@ -104,7 +202,7 @@
   resize: none;
 }
 
-.background .you-tube {
+.main .you-tube {
   height: 50px;
   left: 8px;
   position: absolute;
@@ -112,7 +210,7 @@
   width: 42px;
 }
 
-.background .upload-file {
+.main .upload-file {
   height: 50px;
   left: 8px;
   position: absolute;
@@ -120,7 +218,7 @@
   width: 42px;
 }
 
-.background .cloud-upload {
+.main .cloud-upload {
   height: 50px;
   left: 8px;
   position: absolute;
@@ -128,7 +226,7 @@
   width: 42px;
 }
 
-.background .next-button {
+.main .next-button {
   all: unset;
   box-sizing: border-box;
   height: 45px;
@@ -149,7 +247,7 @@
   font-weight: 700;
 }
 
-.background .overlap {
+.main .overlap {
   background-color: #ffffff;
   border-radius: 30px;
   height: 71px;
@@ -157,7 +255,7 @@
   width: 253px;
 }
 
-.background .text-wrapper-3 {
+.main .text-wrapper-3 {
   color: #000000;
   font-family: "Sintony", Helvetica;
   font-size: 40px;
@@ -169,7 +267,7 @@
   top: 10px;
 }
 
-.background .line {
+.main .line {
   height: 140px;
   left: 910px;
   position: absolute;
