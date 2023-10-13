@@ -39,7 +39,11 @@ function MainPageUpload ({ className }) {
 
   const navigateToSummarize = () => {
     // navigate to /audio-summary-transcription page
-    navigate('/audio-summary-transcription');
+    if (selectedBox === 1 || selectedBox === 2) {
+      navigate('/audio-summary-transcription');
+    } else if (selectedBox === 3) {
+      navigate('/text-summary');
+    }
   };
 
   const handleFileChange = (event) => {
@@ -62,11 +66,6 @@ function MainPageUpload ({ className }) {
     // Handle file selection here
 
  
-  };
-
-  const navigateToTextSummarize = () => {
-    // 👇️ navigate to /audio-summary-transcription page
-    navigate('/text-summary');
   };
   return (
     <div className={`main ${className}`}>
@@ -113,8 +112,6 @@ function MainPageUpload ({ className }) {
         </div>
 
           <button className="next-button" onClick={navigateToSummarize}>Next</button>
-     
-      
      
     </div>
   );
