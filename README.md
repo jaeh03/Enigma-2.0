@@ -1,11 +1,11 @@
-#Enigma 
+# Enigma 
 ## Authors and Acknowledgement
 John Ho, William Ibarra, Hajra Rizvi, Chris Yeung
 
 ## Description 
 Enigma is an application that analyzes audio and video. The application transcribes, summarizes, provide bookmarks via auto chaptering and topic detection using OpenAI and Assembly AI APIs. The user provides a video URL or file and the application strips the audio from the video and applies audio intelligence to provide the user with several options for analysis. 
 
-##Project Status 
+## Project Status 
 As of October 17th, 2023, this project continues to be maintained and supported.
 
 ## React/Django
@@ -88,3 +88,29 @@ While problems are typically minimal, follow these steps:
 2. Select images > delete
 3. Select volumes > delete
 4. Re-run your 'docker-compose up -d' script
+
+## Technologies Used 
+
+### AssemblyAI API
+AssemblyAI specializes in providing audio and video intelligence. It is with AssemblyAI that bookmarking and topic detection is employed in our application.  
+
+### Django 
+High-level open-source web framework written in Python. Provides developers everything needed to build web applications out of the box. Django Rest Framework provides the means for working with web APIs and use RESTful services. 
+
+### Docker
+Docker is a platform designed to create, deploy and run our application. 
+
+### OpenAI API
+OpenAI API allows developers to integrate OpenAI's powerful machine learning models, like ChatGPT, into their own applications. This enables our users to make requests to these models and receive responses. This API currently provides text transcription and summarization capabilities to our application. 
+
+### Python 
+High level programming language used for our application's backend.
+
+### React
+A popular JavaScript library for building the frontend of our application. 
+
+
+
+
+
+
