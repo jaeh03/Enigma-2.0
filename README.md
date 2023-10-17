@@ -1,4 +1,14 @@
-# React/Django
+#Enigma 
+## Authors and Acknowledgement
+John Ho, William Ibarra, Hajra Rizvi, Chris Yeung
+
+## Description 
+Enigma is an application that analyzes audio and video. The application transcribes, summarizes, provide bookmarks via auto chaptering and topic detection using OpenAI and Assembly AI APIs. The user provides a video URL or file and the application strips the audio from the video and applies audio intelligence to provide the user with several options for analysis. 
+
+##Project Status 
+As of October 17th, 2023, this project continues to be maintained and supported.
+
+## React/Django
 
 Enigma uses a React(Node js) and Django(Python) frontend and backend.
 
