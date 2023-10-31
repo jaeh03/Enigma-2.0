@@ -19,6 +19,7 @@ openai.api_key = os.getenv('SUPERSECRETKEY') # TODO: Replace .env key with your 
 
 #aai.settings.api_key = os.getenv('ASSEMBLYAI_API_KEY')
 @csrf_exempt
+@api_view(['POST'])
 def hello_backend(request):
     if request.method == "POST":
         return JsonResponse({"message": "Hello from Enigma's backend. Testing hot reload!"})
@@ -32,7 +33,16 @@ def isSpecialCharacter(char):
     special_characters = ['!', '@', '#', '$', '%', '^', '&', '*', '(', ')', '-', '_', '+', '=', '{', '}', '[', ']', '|', '\\', ':', ';', '"', "'", '<', '>', ',', '.', '?', '/', '~', '`']
     return char in special_characters
 
+
+# Summary selector
+# Pass summary text into the text field in the request body
+# Requests need to pass in a summary type via the summaryType field in the request body, otherwise it will default to paragraph
+# Currently available summary types:
+#   paragraph
+#   point
+#   transcript
 @csrf_exempt
+@api_view(['POST'])
 def summarize_selector(request):
     if request.method == "POST":
         try:
@@ -44,6 +54,8 @@ def summarize_selector(request):
                 summarize_text(text)
             elif summary_type == "point":
                 summarize_text_point(text)
+            elif summary_type == "transcript":
+                summarize_text_transcript(text)
             else:
                 return JsonResponse({"error": "Invalid summarization type"})
             
@@ -52,7 +64,10 @@ def summarize_selector(request):
             return JsonResponse({"error": "Something went wrong"})
     return JsonResponse({"error": "Invalid request method (POST only)"})
 
+
+# Regular text summarization
 @csrf_exempt
+@api_view(['POST'])
 def summarize_text(request):
     if request.method == "POST":
         # Log the raw request data
@@ -82,6 +97,9 @@ def summarize_text(request):
         # return JsonResponse({"message" : "Summarizing text"})
     return JsonResponse({"error": "Invalid request method"})
 
+# Summarization in point form
+@csrf_exempt
+@api_view(['POST'])
 def summarize_text_point(request):
     if request.method == "POST":
         # # Log the raw request data
@@ -104,7 +122,9 @@ def summarize_text_point(request):
         return JsonResponse({"message" : "Summarizing text in point form"})
     return JsonResponse({"error": "Invalid request method"})
 
+# Summarization of a transcript
 @csrf_exempt
+@api_view(['POST'])
 def summarize_text_transcript(request):
     if request.method == "POST":
         # # Log the raw request data
