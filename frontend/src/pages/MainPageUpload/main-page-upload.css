@@ -21,6 +21,89 @@
 	text-align: center;
 }
 
+.main .container {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+    padding: 20px;
+    margin-top: 30%;
+    align-items: center;
+}
+
+
+.main .box{
+	border: 3px solid #000000;
+	padding: 10px;
+	text-align: center;
+	align-items: center; /* Center vertically */
+	flex: 1; /* Equal width for all boxes */
+	border-color: #000;
+	color: #000;
+	border-radius: 23px;
+	background-color: transparent;
+  }
+
+  .main .focused-box{
+	border: 3px solid grey;
+	opacity: 0.8;
+  }
+  
+  .main #box1 #box2 #box3{
+	border: 2px solid;
+	border-color: #000000;
+	border-radius: 23px;
+	border: 5px solid #000000;
+  }
+  
+  
+  .main .video-link{
+	background-color: #e7e7e7b0;
+	border-radius: 12px;
+	height: 35px;
+	width: 85%;
+	padding: 8px 8px 8px;
+	font-size: 16px;
+	box-sizing: border-box;
+	border: none;
+	resize: none;
+	float: right;
+	
+  }
+  
+  .main .input-file {
+	cursor: pointer;
+	opacity: 0; /* make transparent */
+	z-index: -1; /* move under anything else */
+	position: absolute; /* don't let it take up space */
+  }
+  ::file-selector-button {
+	display: none;
+  }
+
+  .main .icon-img{
+	width: 12%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main .icon-img2{
+	width: 8%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main .icon-img3{
+	width: 8%;
+	float: left;
+	margin-left: 2%;
+  }
+  
+  .main #file-input-label{
+	float: left;
+	margin-left: 8px;
+	font-size:24px
+  }
+  
 .upload-section {
 	text-align: center;
 }
