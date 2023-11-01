@@ -46,10 +46,6 @@ function BufferPage() {
 		})
 	}
 
-	function processSelectedFile(selectedFile) {
-		// implement validation
-	}
-
 	return (
 		<div className="summary-page">
 			<img className="sound-img" src={soundImg} alt="sound image" />
@@ -60,6 +56,28 @@ function BufferPage() {
 		</div>
 
 	);
+
+	function processSelectedFile(selectedFile) {
+		const formData = new FormData();
+		formData.append('audio', selectedFile);
+	  
+		client.post('/transcribe-audio/', formData, {
+		  headers: { 'Content-Type': 'multipart/form-data' }
+		})
+		.then(response => {
+			const transcriptionData = response.data.transcription;
+			console.log('Transcription:', transcriptionData);
+			setTranscriptionData(transcriptionData)
+			SummarizeTranscription(transcriptionData).then((summaryData) => {
+		  		console.log('Summary:', summaryData)
+				navigate("/audio-summary-transcription", { state: { transcriptionData, summaryData } });
+		  	})
+		  	navigate("/audio-summary-transcription", { state: { transcriptionData } });
+		})
+		.catch(error => {
+		  	console.error('Error transcribing audio file:', error);
+		});
+	}
 };
 
 
