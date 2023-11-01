@@ -34,10 +34,8 @@ function BufferPage() {
     DownloadAudio(videoLink).then((audioData) => {
       TranscribeAudioData(audioData)
         .then((transcriptionData) => {
-          console.log("Transcription:", transcriptionData);
           setTranscriptionData(transcriptionData);
           SummarizeTranscription(transcriptionData).then((summaryData) => {
-            console.log("Summary:", summaryData);
             navigate("/audio-summary-transcription", {
               state: { transcriptionData, summaryData },
             });
@@ -58,33 +56,35 @@ function BufferPage() {
     </div>
   );
 
-  function processSelectedFile(selectedFile) {
+  async function processSelectedFile(selectedFile) {
     const formData = new FormData();
     formData.append("audio", selectedFile);
 
-    client
-      .post("/transcribe-audio/", formData, {
+    try {
+      // Transcribe the audio
+      const response = await client.post("/transcribe-audio/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
-      })
-      .then((response) => {
-        const transcriptionData = response.data.transcription;
-        console.log("Transcription:", transcriptionData);
-        setTranscriptionData(transcriptionData);
-        //get assembli ai auto chapters
-        AutoChapterAudioData(selectedFile);
-        SummarizeTranscription(transcriptionData).then((summaryData) => {
-          console.log("Summary:", summaryData);
-          navigate("/audio-summary-transcription", {
-            state: { transcriptionData, summaryData },
-          });
-        });
-        navigate("/audio-summary-transcription", {
-          state: { transcriptionData },
-        });
-      })
-      .catch((error) => {
-        console.error("Error transcribing audio file:", error);
       });
+
+      const transcriptionData = response.data.transcription;
+      console.log("Transcription:", transcriptionData);
+      setTranscriptionData(transcriptionData);
+
+      // Summarize the transcription
+      const summaryData = await SummarizeTranscription(transcriptionData);
+      console.log("Summary:", summaryData);
+
+      // Get AssemblyAI auto chapters
+      const autoChatpers = await AutoChapterAudioData(selectedFile);
+      console.log("Chapters:", autoChatpers);
+
+      // Navigate to the summary page
+      navigate("/audio-summary-transcription", {
+        state: { transcriptionData, summaryData },
+      });
+    } catch (error) {
+      console.error("Error processing audio file:", error);
+    }
   }
 }
 
@@ -152,9 +152,7 @@ async function AutoChapterAudioData(audioFile) {
     const response = await client.post("/auto_chapter/", formData);
 
     if (response.status === 200) {
-      const chapters = response.data.chapters;
-      console.log("Auto Chapters: ", chapters);
-      // Handle the chapters data, e.g., save them to state or navigate to the next page
+      return response.data.chapters;
     } else {
       console.error("Error:", response.status, response.statusText);
     }

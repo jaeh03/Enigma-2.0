@@ -6,30 +6,14 @@ import { faFileLines } from "@fortawesome/free-solid-svg-icons";
 import "./main-page.css";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
-import axios from "axios";
-
-const client = axios.create({
-  baseURL: "http://127.0.0.1:8000/api/",
-});
 
 function MainPageUpload({ className }) {
-  const selectedPage = ""; // Replace with the actual selectedPage value
-  const uploadDesc = ""; // Replace with the actual uploadDesc value
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedName, setSelectedName] = useState("");
   const [videoLink, setVideoLink] = useState("");
   const [isDisabled, setIsDisabled] = useState(false); // State to disable all buttons
   const [selectedBox, setSelectedBox] = useState(null);
-
-  const handleButtonAuto = async () => {
-    try {
-      const response = await client.post("/auto_chapter/"); // Changed from .get to .post
-      alert(response.data.message);
-    } catch (error) {
-      alert(`Error calling backend: ${error}`);
-    }
-  };
 
   const handleBoxClick = (boxNumber) => {
     setSelectedBox(boxNumber);
@@ -40,14 +24,6 @@ function MainPageUpload({ className }) {
     } else {
       setIsDisabled(true);
     }
-  };
-
-  const fileSelected = (event) => {
-    // Implement your fileSelected logic here
-  };
-
-  const selectPage = (page) => {
-    // Implement your selectPage logic here
   };
 
   const navigateToSummarize = () => {
@@ -77,33 +53,6 @@ function MainPageUpload({ className }) {
       const message = "No File selected";
       setSelectedName(message);
     }
-  };
-
-  const handleButtonClick = async () => {
-    if (selectedFile && typeof selectedFile === "object" && selectedFile.name) {
-      const formData = new FormData();
-      formData.append("audio_file", selectedFile);
-
-      try {
-        const response = await client.post("/auto_chapter/", formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-        alert(response.data.message);
-
-        // Print chapters to the browser's console
-        console.log("Chapters:", response.data.chapters);
-      } catch (error) {
-        alert(`Error calling backend: ${error.message}`);
-      }
-    } else {
-      alert("Please select a file before clicking the button.");
-    }
-    console.log(
-      "The file name is " +
-        (selectedFile ? selectedFile.name : "No file selected")
-    );
   };
 
   return (
