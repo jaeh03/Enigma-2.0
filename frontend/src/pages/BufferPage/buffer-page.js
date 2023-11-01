@@ -39,7 +39,6 @@ function BufferPage() {
 					console.log('Summary:', summaryData)
 					navigate("/audio-summary-transcription", { state: { transcriptionData, summaryData } });
 				})
-				navigate("/audio-summary-transcription", { state: { transcriptionData } });
 			})
 			.catch((error) => {
 				console.log('Error transcribing video link: ' + error)
@@ -105,7 +104,7 @@ async function TranscribeAudioData(audioData) {
 
 async function SummarizeTranscription(transcriptionData) {
 	try {
-		const response = await client.post('/summarize/', { text: transcriptionData, summaryType: 'transcript' })
+		const response = await client.post('/summarize/', { text: transcriptionData, summaryType: 'paragraph' })
 		return response.data.summary
 	} catch (error) {
 		console.log("Error calling summarizeTranscription: " + error)

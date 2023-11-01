@@ -73,23 +73,14 @@ def summary_selector(request):
 # Regular text summarization
 def summarize_text(text):
     # Parse the JSON data
-    response = openai.ChatCompletion.create(
-    model="gpt-3.5-turbo",
-    messages=[
-    {
-      "role": "system",
-      "content": "Provide an in depth summary of the following content, going over all the key points and keeping all the important details."
-    },
-    {
-      "role": "user",
-      "content": "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus."
-    }
-  ],
-  temperature=0,
-  max_tokens=1024,
-  top_p=1,
-  frequency_penalty=0,
-  presence_penalty=0
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=text + "\n\n Provide an in depth summary of the following content, going over all the key points and keeping all the important details. Keep generalizing to a minimum",
+        temperature=0.5,
+        max_tokens=1024,
+        top_p=1,
+        frequency_penalty=0.4,
+        presence_penalty=0
     )
     print("Response: ", response)
     # Get the summary from the response and clean up whitespaces
@@ -99,44 +90,35 @@ def summarize_text(text):
     if summary and isSpecialCharacter(summary[0]):
         summary = summary[1:].strip()
 
-    return JsonResponse({"summary": summary})
+    return summary
 
 # Summarization in point form
 def summarize_text_point(text):
-        # # Log the raw request data
-        # raw_data = request.body.decode("utf-8")
-        # print("Raw request data:", raw_data)
-
-        # # Parse the JSON data
-        # response = openai.Completion.create(
-        #     model="gpt-3.5-turbo",
-        #     prompt=raw_data + "\n\nTL;DR in point form",
-        #     temperature=0.7,
-        #     max_tokens=1024,
-        #     top_p=1,
-        #     frequency_penalty=0,
-        #     presence_penalty=0
-        # )
-        # print("Response: ", response)
-        # summary = response["choices"][0]["text"]
-        # return JsonResponse({"summary": summary})
-    return "Summarizing text in point form"
+    # Parse the JSON data
+    response = openai.Completion.create(
+        model="text-davinci-003",
+        prompt=text + "\n\n Break down and summarize the content into detailed, in depth point form sections, going over all the key points and keeping all the important details. Keep generalizing to a minimum.",
+        temperature=0.3,
+        max_tokens=1024,
+        top_p=1,
+        frequency_penalty=0.4,
+        presence_penalty=1
+    )
+    print("Response: ", response)
+    summary = response["choices"][0]["text"]
+    return summary
 
 # Summarization of a transcript
 def summarize_text_transcript(text):
-        # # Log the raw request data
-        # raw_data = request.body.decode("utf-8")
-        # print("Raw request data:", raw_data)
-
         # # Parse the JSON data
         # response = openai.Completion.create(
-        #     model="gpt-3.5-turbo",
-        #     prompt=raw_data + "\n\nTL;DR in point form",
+        #     model="text-davinci-003",
+        #     prompt=text + "\n\nTL;DR in point form",
         #     temperature=0.7,
         #     max_tokens=1024,
         #     top_p=1,
         #     frequency_penalty=0,
-        #     presence_penalty=0
+        #     presence_penalty=1
         # )
         # print("Response: ", response)
         # summary = response["choices"][0]["text"]
