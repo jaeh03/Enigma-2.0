@@ -1,12 +1,14 @@
 import "./audio-summary-transcription.css";
 import React, { useState } from 'react';
+import { useLocation } from "react-router-dom";
 import JsPDF from 'jspdf';
 import './PdfGenerator.css'; // Create a CSS file for styling
 
 
 
 function AudioSummaryTranscription() {
-
+	const location = useLocation();
+	const state = location.state;
 
   const generatePdf = () => {
     const report = new JsPDF('portrait','pt','a4');
@@ -48,7 +50,7 @@ function AudioSummaryTranscription() {
           <div className="lower-half">
             <div className="transcription">
               <div className="text-wrapper-2">Transcription</div>
-              <textarea className="textarea-transcript" />
+              <textarea className="textarea-transcript" value={state.transcriptionData} readOnly/>
             </div>
           </div>
         </div>

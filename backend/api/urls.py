@@ -6,6 +6,6 @@ urlpatterns = [
     path('hello/', views.hello_backend, name='hello_backend'),
     path('test/', views.test_view, name='test_view'),
     path('transcribe-audio/', views.transcribe_audio, name='transcribe_audio'),  
-    path('dl-test/', views.dlAudioTest, name='dl-test'),
+    path('download_Audio/', views.download_Audio, name='downloadAudio'),
     path('auto_chapter/', views.auto_chapter, name='auto_chapter')
 ]

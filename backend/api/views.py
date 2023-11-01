@@ -19,6 +19,7 @@ from rest_framework.permissions import AllowAny
 from rest_framework.permissions import AllowAny
 from rest_framework.decorators import permission_classes
 import assemblyai as aai
+import base64
 
 # Create your views here.
 
@@ -155,62 +156,52 @@ def summarize_text_transcript(request):
     return JsonResponse({"error": "Invalid request method"})
 
 @csrf_exempt
+@api_view(['POST'])
 def transcribe_audio(request):
-    if request.method == "POST":
-        try:
-            # Check if an audio file was uploaded
-            if 'audio' in request.data:
-                audio_file = request.data['audio']
+    try:
+        # Check if an audio file was uploaded
+        if 'audio' in request.FILES:
+            audio_file = request.FILES['audio']
 
-                # Set your OpenAI API key from the environment variable
-                openai.api_key = os.getenv('SUPERSECRETKEY')
+            # Set your OpenAI API key from the environment variable
+            openai.api_key = os.getenv('SUPERSECRETKEY')
 
-                # Transcribe the audio using the OpenAI Audio API
-                response = openai.Audio.transcribe("whisper-1", audio_file)
+            # Transcribe the audio using the OpenAI Audio API
+            response = openai.Audio.transcribe("whisper-1", audio_file)
 
-                # Extract the transcribed text from the response
-                transcription = response["text"]
+            # Extract the transcribed text from the response
+            transcription = response["text"]
 
-                # Save the transcription to your database or return it as JSON
-                return JsonResponse({'transcription': transcription})
-            else:
-                return JsonResponse({'error': 'No audio file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
-        except Exception as e:
-            # Handle exceptions and print traceback for debugging
-            traceback.print_exc()
-            return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
-    else:
-        return JsonResponse({'error': 'Invalid request method'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+            # Save the transcription to your database or return it as JSON
+            return JsonResponse({'transcription': transcription})
+        else:
+            return JsonResponse({'error': 'No audio file uploaded'}, status=status.HTTP_400_BAD_REQUEST)
+    except Exception as e:
+        # Handle exceptions and print traceback for debugging
+        traceback.print_exc()
+        return JsonResponse({'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
     
 @csrf_exempt
-@api_view(['GET'])
-def dlAudioTest(url):
+@api_view(['POST'])
+def download_Audio(request):
     try:
-        # Testing only
-        # The Missile Knows Where It Is
-        yt = YouTube("https://www.youtube.com/watch?v=bZe5J8SVCYQ")
-
         # Use this for deployment
-        # yt = YouTube(url)
+        yt = YouTube(request.data.get('url'))
 
         # Get audio stream
         video = yt.streams.filter(only_audio=True).first()
         audio = BytesIO()
         video.stream_to_buffer(audio)
 
-        # Send audio to transcribe-audio endpoint via POST
-        # response = requests.post(
-        #     'http://localhost:8000/api/transcribe-audio/',
-        #     data={'audio' : audio.getvalue()}
-        # )
+        audio_base64 = base64.b64encode(audio.getvalue()).decode('utf-8')
 
-        # Download file as mp3
-        # with open('audio.mp3', 'wb') as f:
-        #     f.write(audio.getbuffer())
-
-        return JsonResponse({"message": "Download successful"}, status=status.HTTP_200_OK)
+        response_data = {
+            "message": "Download successful",
+            "audio_data": audio_base64
+        }
+        return JsonResponse(response_data, status=status.HTTP_200_OK)
     except Exception as e:
-        return JsonResponse({"error": "Download Failed"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+        return JsonResponse({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])

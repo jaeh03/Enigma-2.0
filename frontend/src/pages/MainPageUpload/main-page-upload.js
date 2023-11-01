@@ -18,6 +18,7 @@ function MainPageUpload({ className }) {
   const navigate = useNavigate();
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedName, setSelectedName] = useState("");
+  const [videoLink, setVideoLink] = useState("");
   const [isDisabled, setIsDisabled] = useState(false); // State to disable all buttons
   const [selectedBox, setSelectedBox] = useState(null);
 
@@ -50,9 +51,10 @@ function MainPageUpload({ className }) {
   };
 
   const navigateToSummarize = () => {
-    // navigate to /audio-summary-transcription page
-    if (selectedBox === 1 || selectedBox === 2) {
-      navigate("/audio-summary-transcription");
+    if (selectedBox === 1) {
+      navigate("/buffer-page", { state: { videoLink } });
+    } else if (selectedBox === 2) {
+      navigate("/buffer-page", { state: { selectedFile } });
     } else if (selectedBox === 3) {
       navigate("/text-summary");
     }
@@ -123,8 +125,11 @@ function MainPageUpload({ className }) {
           <textarea
             className="video-link"
             placeholder="video link"
+            onBlur={(event) => {
+              setVideoLink(event.target.value);
+            }}
             disabled={isDisabled}
-          />
+          ></textarea>
         </div>
 
         <button
