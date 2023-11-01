@@ -12,12 +12,18 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from pytube import YouTube
 from io import BytesIO
+from rest_framework.decorators import parser_classes
+from rest_framework.parsers import MultiPartParser, FormParser
+from rest_framework.permissions import AllowAny
+from rest_framework.permissions import AllowAny
+from rest_framework.decorators import permission_classes
+import assemblyai as aai
 
 # Create your views here.
 
 openai.api_key = os.getenv('SUPERSECRETKEY') # TODO: Replace .env key with your API key
+aai.settings.api_key = os.getenv('ASSEMBLYAI_API_KEY')
 
-#aai.settings.api_key = os.getenv('ASSEMBLYAI_API_KEY')
 @csrf_exempt
 @api_view(['POST'])
 def hello_backend(request):
@@ -186,3 +192,38 @@ def dlAudioTest(url):
         f.write(audio.getbuffer())
 
     return Response({'response': 'download worked', 'audio': audio}, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+@parser_classes([MultiPartParser, FormParser])
+@permission_classes([AllowAny]) 
+def auto_chapter(request):
+    """
+    Upload audio files and process them to generate summaries using AssemblyAI.
+    """
+    if request.method == 'POST':
+        audio_file = request.FILES.get('audio_file')
+
+        if not audio_file:
+            return Response({"message": "Missing audio file."}, status=status.HTTP_400_BAD_REQUEST)
+
+        # Save the uploaded file temporarily
+        temp_filename = "/tmp/uploaded_audio.mp3"
+        with open(temp_filename, 'wb+') as destination:
+            for chunk in audio_file.chunks():
+                destination.write(chunk)
+
+        # Transcribe the audio using AssemblyAI
+        config = aai.TranscriptionConfig(auto_chapters=True)
+        transcript = aai.Transcriber().transcribe(temp_filename, config)
+
+        chapters_list = []
+        for chapter in transcript.chapters:
+            chapters_list.append(f"{chapter.start}-{chapter.end}: {chapter.headline}")
+
+        # Return a response
+        return Response({"message": "Transcription successful!", "chapters": chapters_list}, status=status.HTTP_200_OK)
+
+    return Response({"message": "Method not allowed."}, status=status.HTTP_405_METHOD_NOT_ALLOWED)
+
+
+

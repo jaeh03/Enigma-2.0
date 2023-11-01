@@ -13,7 +13,7 @@ import NewSummary from "./pages/NewSummary/new-summary";
 
 //TODO: implement the backend before making the post requests
 const client = axios.create({
-  baseURL: "https://enigmatldv.me/api/",
+  baseURL: "http://127.0.0.1:8000/api/",
 });
 
 const handleButtonClick = async () => {
@@ -26,7 +26,6 @@ const handleButtonClick = async () => {
 };
 
 export default class App extends React.Component {
-
   render() {
     return (
       <div className="bg">

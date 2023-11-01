@@ -6,5 +6,5 @@ urlpatterns = [
     path('hello/', views.hello_backend, name='hello_backend'),
     path('test/', views.test_view, name='test_view'),
     path('transcribe-audio/', views.transcribe_audio, name='transcribe_audio'),  
-    #path('auto-chapter/', views.auto_chapter, name='auto-chapter')
+    path('auto_chapter/', views.auto_chapter, name='auto_chapter')
 ]
