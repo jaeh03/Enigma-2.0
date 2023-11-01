@@ -51,109 +51,98 @@ def isSpecialCharacter(char):
 #   transcript
 @csrf_exempt
 @api_view(['POST'])
-def summarize_selector(request):
-    if request.method == "POST":
-        try:
-            data = request.data
-            text = data.get("text", "")
-            summary_type = data.get("summaryType", "paragraph")
+def summary_selector(request):
+    try:
+        data = request.data
+        text = data.get("text", "")
+        summary_type = data.get("summaryType", "")
 
-            if summary_type == "paragraph":
-                summarize_text(text)
-            elif summary_type == "point":
-                summarize_text_point(text)
-            elif summary_type == "transcript":
-                summarize_text_transcript(text)
-            else:
-                return JsonResponse({"error": "Invalid summarization type"})
-            
-        except Exception as e:
-            print(e)
-            return JsonResponse({"error": "Something went wrong"})
-    return JsonResponse({"error": "Invalid request method (POST only)"})
+        if summary_type == "paragraph":
+            return JsonResponse({"summary": summarize_text(text)})
+        elif summary_type == "point":
+            return JsonResponse({"summary": summarize_text_point(text)})
+        elif summary_type == "transcript":
+            return JsonResponse({"summary": summarize_text_transcript(text)})
+        else:
+            return JsonResponse({"error": "Invalid summarization type"})
+        
+    except Exception as e:
+        return JsonResponse({"error": str(e)})
 
 
 # Regular text summarization
-@csrf_exempt
-@api_view(['POST'])
-def summarize_text(request):
-    if request.method == "POST":
-        # Log the raw request data
-        raw_data = request.body.decode("utf-8")
-        
-        print("Raw request data:", raw_data)
+def summarize_text(text):
+    # Parse the JSON data
+    response = openai.ChatCompletion.create(
+    model="gpt-3.5-turbo",
+    messages=[
+    {
+      "role": "system",
+      "content": "Provide an in depth summary of the following content, going over all the key points and keeping all the important details."
+    },
+    {
+      "role": "user",
+      "content": "Jupiter is the fifth planet from the Sun and the largest in the Solar System. It is a gas giant with a mass one-thousandth that of the Sun, but two-and-a-half times that of all the other planets in the Solar System combined. Jupiter is one of the brightest objects visible to the naked eye in the night sky, and has been known to ancient civilizations since before recorded history. It is named after the Roman god Jupiter.[19] When viewed from Earth, Jupiter can be bright enough for its reflected light to cast visible shadows,[20] and is on average the third-brightest natural object in the night sky after the Moon and Venus."
+    }
+  ],
+  temperature=0,
+  max_tokens=1024,
+  top_p=1,
+  frequency_penalty=0,
+  presence_penalty=0
+    )
+    print("Response: ", response)
+    # Get the summary from the response and clean up whitespaces
+    summary = response["choices"][0]["text"].strip()
 
-        # Parse the JSON data
-        response = openai.Completion.create(
-            model="text-davinci-003",
-            prompt=raw_data + "\n\nTL;DR",
-            temperature=0.7,
-            max_tokens=100,
-            top_p=1,
-            frequency_penalty=0,
-            presence_penalty=1
-        )
-        print("Response: ", response)
-        # Get the summary from the response and clean up whitespaces
-        summary = response["choices"][0]["text"].strip()
+    # Remove special characters from the front of the summary and clean up whitespaces again
+    if summary and isSpecialCharacter(summary[0]):
+        summary = summary[1:].strip()
 
-        # Remove special characters from the front of the summary and clean up whitespaces again
-        if summary and isSpecialCharacter(summary[0]):
-            summary = summary[1:].strip()
-
-        return JsonResponse({"summary": summary})
-        # return JsonResponse({"message" : "Summarizing text"})
-    return JsonResponse({"error": "Invalid request method"})
+    return JsonResponse({"summary": summary})
 
 # Summarization in point form
-@csrf_exempt
-@api_view(['POST'])
-def summarize_text_point(request):
-    if request.method == "POST":
+def summarize_text_point(text):
         # # Log the raw request data
         # raw_data = request.body.decode("utf-8")
         # print("Raw request data:", raw_data)
 
         # # Parse the JSON data
         # response = openai.Completion.create(
-        #     model="text-davinci-003",
+        #     model="gpt-3.5-turbo",
         #     prompt=raw_data + "\n\nTL;DR in point form",
         #     temperature=0.7,
-        #     max_tokens=60,
+        #     max_tokens=1024,
         #     top_p=1,
         #     frequency_penalty=0,
-        #     presence_penalty=1
+        #     presence_penalty=0
         # )
         # print("Response: ", response)
         # summary = response["choices"][0]["text"]
         # return JsonResponse({"summary": summary})
-        return JsonResponse({"message" : "Summarizing text in point form"})
-    return JsonResponse({"error": "Invalid request method"})
+    return "Summarizing text in point form"
 
 # Summarization of a transcript
-@csrf_exempt
-@api_view(['POST'])
-def summarize_text_transcript(request):
-    if request.method == "POST":
+def summarize_text_transcript(text):
         # # Log the raw request data
         # raw_data = request.body.decode("utf-8")
         # print("Raw request data:", raw_data)
 
         # # Parse the JSON data
         # response = openai.Completion.create(
-        #     model="text-davinci-003",
+        #     model="gpt-3.5-turbo",
         #     prompt=raw_data + "\n\nTL;DR in point form",
         #     temperature=0.7,
-        #     max_tokens=60,
+        #     max_tokens=1024,
         #     top_p=1,
         #     frequency_penalty=0,
-        #     presence_penalty=1
+        #     presence_penalty=0
         # )
         # print("Response: ", response)
         # summary = response["choices"][0]["text"]
         # return JsonResponse({"summary": summary})
-        return JsonResponse({"message" : "Summarizing text transcript"})
-    return JsonResponse({"error": "Invalid request method"})
+    # return a string
+    return "Summarizing text transcript"
 
 @csrf_exempt
 @api_view(['POST'])
@@ -193,8 +182,10 @@ def download_Audio(request):
         audio = BytesIO()
         video.stream_to_buffer(audio)
 
+        # Encode audio to base64
         audio_base64 = base64.b64encode(audio.getvalue()).decode('utf-8')
 
+        # Consolidate response data
         response_data = {
             "message": "Download successful",
             "audio_data": audio_base64
