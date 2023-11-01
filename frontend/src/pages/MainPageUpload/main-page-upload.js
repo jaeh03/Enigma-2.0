@@ -54,7 +54,15 @@ function MainPageUpload({ className }) {
     if (selectedBox === 1) {
       navigate("/buffer-page", { state: { videoLink } });
     } else if (selectedBox === 2) {
-      navigate("/buffer-page", { state: { selectedFile } });
+      if (
+        selectedFile &&
+        typeof selectedFile === "object" &&
+        selectedFile.name
+      ) {
+        navigate("/buffer-page", { state: { selectedFile } });
+      } else {
+        alert("Please select a file before clicking the button.");
+      }
     } else if (selectedBox === 3) {
       navigate("/text-summary");
     }
@@ -100,10 +108,6 @@ function MainPageUpload({ className }) {
 
   return (
     <div className={`main ${className}`}>
-      <button variant="success" onClick={handleButtonAuto}>
-        Auto Chapter
-      </button>
-      <button onClick={handleButtonClick}>Click me</button>
       <p className="text-wrapper">try now to get lectures summarized</p>
       <div className="div">in seconds</div>
       <p className="p">

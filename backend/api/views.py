@@ -16,7 +16,6 @@ from io import BytesIO
 from rest_framework.decorators import parser_classes
 from rest_framework.parsers import MultiPartParser, FormParser
 from rest_framework.permissions import AllowAny
-from rest_framework.permissions import AllowAny
 from rest_framework.decorators import permission_classes
 import assemblyai as aai
 import base64
