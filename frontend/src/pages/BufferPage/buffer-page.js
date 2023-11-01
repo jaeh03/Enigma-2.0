@@ -15,6 +15,7 @@ function BufferPage() {
 	const state = location.state;
 	const navigate = useNavigate();
 	const [transcriptionData, setTranscriptionData] = useState("");
+	// const [summaryData, setSummaryData] = useState("");
 
 	useEffect(() => {
 		if (state && state.videoLink) {
@@ -24,20 +25,30 @@ function BufferPage() {
 			// Process the selected file
 			processSelectedFile(state.selectedFile);
 		}
-	}, [state]); // Re-run the effect when state changes
+	});
 
 	function processVideoLink(videoLink) {
-		// implement validation
+		// TODO: implement validation
+
+		// Download audio and transcribe it
 		DownloadAudio(videoLink).then((audioData) => {
 			TranscribeAudioData(audioData).then((transcriptionData) => {
 				console.log('Transcription:', transcriptionData)
 				setTranscriptionData(transcriptionData)
+				SummarizeTranscription(transcriptionData).then((summaryData) => {
+					console.log('Summary:', summaryData)
+					navigate("/audio-summary-transcription", { state: { transcriptionData, summaryData } });
+				})
 				navigate("/audio-summary-transcription", { state: { transcriptionData } });
 			})
 			.catch((error) => {
 				console.log('Error transcribing video link: ' + error)
 			})
 		})
+	}
+
+	function processSelectedFile(selectedFile) {
+		// implement validation
 	}
 
 	return (
@@ -56,10 +67,11 @@ function BufferPage() {
 
 async function DownloadAudio(videoLink) {
 	try {
-		console.log('Calling downloadAudio')
+		console.log('Downloading audio')
 		const response = await client.post('/download_Audio/', { url: videoLink })
 		console.log('Audio downloaded')
 
+		// Convert base64 string to Uint8Array
 		const audioData = atob(response.data.audio_data)
 		const uint8Array = new Uint8Array(audioData.length);
         for (let i = 0; i < audioData.length; i++) {
@@ -74,12 +86,13 @@ async function DownloadAudio(videoLink) {
 
 async function TranscribeAudioData(audioData) {
 	try {
+		// Convert Uint8Array to Blob
 		const audioArrayBuffer = audioData.buffer;
 		const audioBlob = new Blob([audioArrayBuffer], { type: 'audio/wav' });
 
+		// Send audio blob to backend
 		const formData = new FormData()
 		formData.append('audio', audioBlob, 'audio.wav')
-
 		const transcrptionResponse = await client.post('/transcribe-audio/', formData, {
 			headers: { 'Content-Type': 'multipart/form-data' }
 		})
@@ -90,8 +103,13 @@ async function TranscribeAudioData(audioData) {
 	}
 }
 
-function processSelectedFile(selectedFile) {
-	// implement validation
+async function SummarizeTranscription(transcriptionData) {
+	try {
+		const response = await client.post('/summarize/', { text: transcriptionData, summaryType: 'transcript' })
+		return response.data.summary
+	} catch (error) {
+		console.log("Error calling summarizeTranscription: " + error)
+	}
 }
 
 export default BufferPage;

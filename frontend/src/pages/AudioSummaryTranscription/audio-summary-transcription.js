@@ -32,9 +32,7 @@ function AudioSummaryTranscription() {
         <div className="left-half">
           <div className="summarization" id="report">
             <div className="text-wrapper-2">Summarization</div>
-            <textarea 
-            className="textarea" 
-             />
+            <textarea className="textarea" value={state.summaryData} readOnly/>
           </div>
         </div>
         <div className="line-breaker"></div>
