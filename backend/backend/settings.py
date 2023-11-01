@@ -7,10 +7,10 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = os.getenv('DEBUG')
 
 #UNCOMMENT TO USE IN DEV
-#ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['*']
 
 #UNCOMMENT TO USE IN PROD
-ALLOWED_HOSTS = ['enigmatldv.me', 'www.enigmatldv.me', 'enigma.us-east-1.elasticbeanstalk.com']
+#ALLOWED_HOSTS = ['enigmatldv.me', 'www.enigmatldv.me', 'enigma.us-east-1.elasticbeanstalk.com']
 
 # If using a reverse proxy/load balancer, ensure Django respects the 
 # X-Forwarded-Proto header to know if a request is HTTPS.
@@ -28,6 +28,7 @@ CORS_ALLOWED_ORIGINS = [
     'http://0.0.0.0',
     'https://enigmatldv.me',
     'https://www.enigmatldv.me',
+    'http://localhost:3000',
 ]
 
 CORS_ALLOW_CREDENTIALS = True
@@ -84,7 +85,7 @@ DATABASES = {
 
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        'rest_framework.permissions.AllowAny',
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.SessionAuthentication',

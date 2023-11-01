@@ -49,4 +49,8 @@ openai==0.28.0
 requests==2.26.0
 
 #audio intelligence
-assemblyai==0.4.0  # Replace with the latest version if needed
+assemblyai==0.19.0  # Replace with the latest version if needed
+
+#Assembly ai needed this. No version specified = always latest version
+pydantic-settings 
+
