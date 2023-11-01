@@ -4,6 +4,7 @@ import openai
 import requests
 import time
 import traceback
+import asyncio
 from django.http import JsonResponse
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
@@ -158,8 +159,8 @@ def transcribe_audio(request):
     if request.method == "POST":
         try:
             # Check if an audio file was uploaded
-            if 'audio_file' in request.FILES:
-                audio_file = request.FILES['audio_file']
+            if 'audio' in request.data:
+                audio_file = request.data['audio']
 
                 # Set your OpenAI API key from the environment variable
                 openai.api_key = os.getenv('SUPERSECRETKEY')
@@ -184,14 +185,32 @@ def transcribe_audio(request):
 @csrf_exempt
 @api_view(['GET'])
 def dlAudioTest(url):
-    yt = YouTube("https://www.youtube.com/watch?v=tY_3bDHdiiA")
-    video = yt.streams.filter(only_audio=True).first()
-    audio = BytesIO()
-    video.stream_to_buffer(audio)
-    with open('audio.mp3', 'wb') as f:
-        f.write(audio.getbuffer())
+    try:
+        # Testing only
+        # The Missile Knows Where It Is
+        yt = YouTube("https://www.youtube.com/watch?v=bZe5J8SVCYQ")
 
-    return Response({'response': 'download worked', 'audio': audio}, status=status.HTTP_200_OK)
+        # Use this for deployment
+        # yt = YouTube(url)
+
+        # Get audio stream
+        video = yt.streams.filter(only_audio=True).first()
+        audio = BytesIO()
+        video.stream_to_buffer(audio)
+
+        # Send audio to transcribe-audio endpoint via POST
+        # response = requests.post(
+        #     'http://localhost:8000/api/transcribe-audio/',
+        #     data={'audio' : audio.getvalue()}
+        # )
+
+        # Download file as mp3
+        # with open('audio.mp3', 'wb') as f:
+        #     f.write(audio.getbuffer())
+
+        return JsonResponse({"message": "Download successful"}, status=status.HTTP_200_OK)
+    except Exception as e:
+        return JsonResponse({"error": "Download Failed"}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 @api_view(['POST'])
 @parser_classes([MultiPartParser, FormParser])
