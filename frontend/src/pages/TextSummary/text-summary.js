@@ -44,13 +44,21 @@ const TextSummary = () => {
         </div>
         </div>
 
-        <div className="button-container">
-          <button className="btn btn-light btn-lg fs-3" onClick={SummarizeText}>Summarize</button>
-          <div className="form-check form-switch">
-            <input className="form-check-input" type="checkbox" id="flexSwitchCheckDefault" checked={isPointForm} onChange={() => setIsPointForm(!isPointForm)} />
-            <label className="form-check-label" for="flexSwitchCheckDefault">Point Form</label>
+        <div className="pointFormContainer">
+        <text className="pointForm">
+          Point Form
+        </text>
+        <div className="toggle-switch">
+            <input className="checkbox" type="checkbox" id="flexSwitchCheckDefault" checked={isPointForm} onChange={() => setIsPointForm(!isPointForm)} />
+            <label className="label" for="flexSwitchCheckDefault">
+            <span className="inner" /> 
+          <span className="switch" /></label>
           </div>
+        <div className="button-container">
+          <button className="btnSummarize" onClick={SummarizeText}>Summarize</button>
+ 
         </div>
+    </div>
     </div>
   );
 };
