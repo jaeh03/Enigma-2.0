@@ -74,13 +74,13 @@ function BufferPage() {
       const summaryData = await SummarizeTranscription(transcriptionData);
       console.log("Summary:", summaryData);
 
-      // Get AssemblyAI auto chapters
-      const autoChatpers = await AutoChapterAudioData(selectedFile);
-      console.log("Chapters:", autoChatpers);
+      // // Get AssemblyAI auto chapters
+      // const autoChatpers = await AutoChapterAudioData(selectedFile);
+      // console.log("Chapters:", autoChatpers);
 
       // Navigate to the summary page
       navigate("/audio-summary-transcription", {
-        state: { transcriptionData, summaryData, autoChatpers },
+        state: { transcriptionData, summaryData },
       });
     } catch (error) {
       console.error("Error processing audio file:", error);

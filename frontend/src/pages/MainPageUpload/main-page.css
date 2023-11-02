@@ -73,6 +73,7 @@
 	color: #000;
 	border-radius: 23px;
 	background-color: transparent;
+  margin-right: 5px; 
   }
 
   .main .focused-box{
@@ -135,6 +136,17 @@
 	margin-left: 8px;
 	font-size:24px
   }
+
+  .main .input-summaryBtn{
+    font-size:24px;
+    float: left;
+	  margin-left: 8px;
+  }
+
+  .svg-inline--fa {
+    height: 2em;
+  }
+
 
   .main .next-button {
     all: unset;
