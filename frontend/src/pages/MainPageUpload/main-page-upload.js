@@ -109,7 +109,7 @@ function MainPageUpload({ className }) {
           disabled={isDisabled}
         >
           <FontAwesomeIcon className="icon-img3" icon={faFileLines} />
-          <p className="summary-title">input summary</p>
+          <p className="input-summaryBtn">input summary</p>
         </button>
       </div>
 

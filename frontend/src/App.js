@@ -30,9 +30,9 @@ export default class App extends React.Component {
     return (
       <div className="bg">
         <EnigmaNavbar />
-        <Button id="form_btn" variant="success" onClick={handleButtonClick}>
+        {/* <Button id="form_btn" variant="success" onClick={handleButtonClick}>
           Click to communicate with Enigma's backend!
-        </Button>
+        </Button> */}
         <Routes>
           <Route exact path="/" element={<MainPageUpload />} />
           <Route path="/about" element={<About />} />
