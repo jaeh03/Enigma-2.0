@@ -66,11 +66,15 @@ function AudioSummaryTranscription() {
           <div className="summarization" id="report">
             <div className="text-wrapper-2">Summarization</div>
             <div className="textarea">
+              <div>
+                {state.summaryData}
+              </div>
+              <br></br>
             {parsedChapters.map((chapter, index) => (
-    <div key={index}>
-      <a href="https://www.google.ca" target="_blank" rel="noopener noreferrer">{msToMMSS(chapter.start)}</a> -  
-      <a href={`your-link-here-for-end-${chapter.end}`}>{" "+msToMMSS(chapter.end)}</a> : {chapter.content}
-    </div>
+        <div key={index}>
+        <a href="https://www.google.ca" target="_blank" rel="noopener noreferrer">{msToMMSS(chapter.start)}</a> -  
+        <a href={`your-link-here-for-end-${chapter.end}`}>{" "+msToMMSS(chapter.end)}</a> : {chapter.content}
+        </div>
   ))}
             </div>
           </div>
