@@ -80,7 +80,7 @@ function BufferPage() {
 
       // Navigate to the summary page
       navigate("/audio-summary-transcription", {
-        state: { transcriptionData, summaryData },
+        state: { transcriptionData, summaryData, autoChatpers },
       });
     } catch (error) {
       console.error("Error processing audio file:", error);

@@ -9,6 +9,11 @@
   overflow: hidden;
 }
 
+a{
+  text-decoration: none;
+  font-weight: 500;
+}
+
 .summary-container {
   display: flex;
   width: 100%;

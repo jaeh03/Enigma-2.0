@@ -15,6 +15,40 @@ function AudioSummaryTranscription() {
     });
   };
 
+  function msToMMSS(milliseconds) {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+  }
+
+  const parsedChapters = [];
+  const chapters = state.autoChatpers
+  for (let i = 0; i < chapters.length; i++) {
+    const chapter = chapters[i];
+    const chapterMatch = chapter.match(/(\d+)-(\d+): (.+)/);
+  
+    if (chapterMatch) {
+      const start = parseInt(chapterMatch[1], 10);
+      const end = parseInt(chapterMatch[2], 10);
+      const content = chapterMatch[3];
+  
+      // Now you can access and manipulate the start, end, and content for each chapter
+      console.log(`Chapters ${i + 1}:`);
+      console.log(`Start: ${start}`);
+      console.log(`End: ${end}`);
+      console.log(`Content: ${content}`);
+      console.log('\n');
+
+      // Add the parsed chapter to the array
+      parsedChapters.push({
+        start,
+        end,
+        content,
+      });
+    }
+  }
+
   return (
     <div className="summary-page">
       <div className="export-btn-div">
@@ -31,7 +65,14 @@ function AudioSummaryTranscription() {
         <div className="left-half">
           <div className="summarization" id="report">
             <div className="text-wrapper-2">Summarization</div>
-            <textarea className="textarea" value={state.summaryData} readOnly />
+            <div className="textarea">
+            {parsedChapters.map((chapter, index) => (
+    <div key={index}>
+      <a href="https://www.google.ca" target="_blank" rel="noopener noreferrer">{msToMMSS(chapter.start)}</a> -  
+      <a href={`your-link-here-for-end-${chapter.end}`}>{" "+msToMMSS(chapter.end)}</a> : {chapter.content}
+    </div>
+  ))}
+            </div>
           </div>
         </div>
         <div className="line-breaker"></div>
