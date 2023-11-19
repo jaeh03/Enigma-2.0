@@ -1,5 +1,5 @@
 import "./audio-summary-transcription.css";
-import React, { useState } from "react";
+import React from "react";
 import { useLocation } from "react-router-dom";
 import JsPDF from "jspdf";
 import "./PdfGenerator.css"; // Create a CSS file for styling
@@ -14,7 +14,6 @@ function AudioSummaryTranscription() {
       report.save("report.pdf");
     });
   };
-
 
   return (
     <div className="summary-page">
@@ -46,7 +45,7 @@ function AudioSummaryTranscription() {
             <div className="video">
               <div className="text-wrapper-2">Video</div>
               <div className="textarea-video">
-                <video className="video" controls></video>
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/EthDXAPgC9U?si=BnZI_AvRNRoWnSYR" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
               </div>
             </div>
           </div>
