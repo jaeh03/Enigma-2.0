@@ -58,7 +58,7 @@ a{
 .textarea {
   height: 100%;
   width: 100%;
-  background-color: #ffffff5e;
+  /* background-color: #ffffff5e; */
   border-radius: 5px;
   resize: none;
   border:none;
@@ -67,7 +67,13 @@ a{
 .line-breaker {
   width: 2px;
   background-color: #000; /* You can change the color as needed */
-  height: 87%;
+  height: 93%;
+}
+
+.text-wrapper-ast{
+  font-size: 24px;
+  padding-bottom: 8px;
+
 }
 
 .video {

@@ -57,7 +57,7 @@ function MainPageUpload({ className }) {
 
   return (
     <div className={`main ${className}`}>
-      <p className="text-wrapper">try now to get lectures summarized</p>
+      <p className="text-wrapper-main">try now to get lectures summarized</p>
       <div className="div">in seconds</div>
       <p className="p">
         Upload your choice of video or audio and get summarized audio to text.
