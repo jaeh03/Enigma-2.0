@@ -5,8 +5,29 @@
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
-  height: 100vh;
   overflow: hidden;
+}
+
+.export-btn-div {
+  display: flex;
+  align-items: center;
+}
+
+#id{
+  padding-left: 20px;
+}
+
+.export-btn {
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Adjust padding as needed */
+  border: none;
+  cursor: pointer;
+}
+
+.icon-img2 {
+  margin-left: 8px; /* Adjust margin as needed to create space between text and icon */
+  width: 25px;
 }
 
 a{
@@ -33,7 +54,6 @@ a{
 }
 
 .upper-half {
-  flex: 1;
   padding: 0 20px 0 20px;
 }
 
@@ -56,12 +76,13 @@ a{
 }
 
 .textarea {
-  height: 100%;
+  height: 850px;
   width: 100%;
   /* background-color: #ffffff5e; */
   border-radius: 5px;
   resize: none;
   border:none;
+  overflow: auto;
 }
 
 .line-breaker {
@@ -96,12 +117,14 @@ a{
 }
 
 .textarea-transcript {
-  height: calc(100% - 34px);
+  /* height: calc(100% - 34px); */
+  height: 500px;
   width: 100%;
   background-color: #ffffff5e;
   border-radius: 5px;
   resize: none;
   border:none;
+  overflow: auto;
 }
 
 .summary-page .export-btn{
@@ -119,4 +142,27 @@ a{
 .summary-page .export-btn-div{
   float: right;
   padding-right: 2%;
+}
+
+.timestamps{
+  font-weight: 600;
+  color: #096f6c;
+}
+
+.timestamps:hover{
+  color: #000;
+}
+
+.next-button{
+  all: unset; 
+  text-align: center; /* Center text horizontally */
+  background-color: #ffffff;
+  padding: 10px 0px;
+  border-radius: 15px;
+  margin: 10px 0px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  width: 150px;
+  height:30px;
 }

@@ -31,7 +31,7 @@ const TextSummary = () => {
         <div className="text-summary-container">
         <div className="text-half">
           {/* Input text area */}
-            <textarea className="textarea"
+            <textarea className="textarea-text-summary"
             placeholder="Enter text here..."
             value = {inputText}
             onChange={(e) => setInputText(e.target.value)}
@@ -40,7 +40,7 @@ const TextSummary = () => {
         <div className="text-line"></div>
         <div className="text-half">
           {/* Output text area */}
-            <textarea className="textarea" disabled value={outputText}/>
+            <textarea className="textarea-text-summary" disabled value={outputText}/>
         </div>
         </div>
 

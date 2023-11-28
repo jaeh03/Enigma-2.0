@@ -35,7 +35,7 @@ function BufferPage() {
   }, []); // Make sure to pass an empty dependency array to useEffect
 
   return (
-    <div className="summary-page">
+    <div className="buffer-page">
       <img className="sound-img" src={soundImg} alt="sound image" />
       <div className="text-description">
         We are processing your file. This may take <br></br>a few seconds.

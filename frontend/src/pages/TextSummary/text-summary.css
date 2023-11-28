@@ -9,6 +9,16 @@
     overflow: hidden;
 }
 
+.textarea-text-summary {
+  height: 570px;
+  width: 100%;
+  /* background-color: #ffffff5e; */
+  border-radius: 5px;
+  resize: none;
+  border:none;
+  overflow: auto;
+}
+
 .text-summary-container {
     display: flex;
     flex-direction: row;

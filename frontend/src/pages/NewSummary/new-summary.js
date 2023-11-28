@@ -68,7 +68,7 @@ function NewSummary({ className }) {
       setRating(selectedRating);
       switch (selectedRating) {
         case 'good':
-          setResponse('Thank you for your feedback! We are glad you found it good.');
+          setResponse('Thank you for your feedback!');
           break;
         case 'great':
           setResponse('Awesome! Your feedback is greatly appreciated.');

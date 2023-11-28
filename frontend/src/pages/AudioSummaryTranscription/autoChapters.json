@@ -1,0 +1,93 @@
+[
+    {
+        "header": "C#",
+        "timestamp": "1:16",
+        "content": "This is CS 50 and this is week one wherein we continue programming, but we do it in a different language. Even if today's syntax as we to this new language called C feels a little bit cryptic, realize that the ideas are ultimately going to be the same."
+    },
+    {
+        "header": "Visual Studio Code: For C, Not Just Writing Code ",
+        "timestamp": "07:13",
+        "content": "For this class, not only with C, but the other languages we use later in the term, we're going to use a free text editor that is programmed called Vs code. The goal is by the end of the semester to migrate you off of that cloud based environment to your own Mac and PC."
+    },
+    {
+        "header": "Making a C# program in VS Code ",
+        "timestamp": "16:58",
+        "content": "There are two hello files. One is the one I created as the human called Hello C. But then when I ran Make Hello, that process compiled my source code into machine code. If you try clicking on the hello file, the file is not displayed in the editor. Part of today will be for me to deliberately induce some error messages."
+    },
+    {
+        "header": "VS Code ",
+        "timestamp": "18:18",
+        "content": "Vs code and most programming environments automatically do for you automatically is syntax highlighting. It analyzes the code that you've typed and when it notices certain types of keystrokes, it highlights it ever so differently. You can change a change to a different color theme."
+    },
+    {
+        "header": "C Code: Semicolons and Syntax Errors  ",
+        "timestamp": "25:05",
+        "content": "Do you need a semicolon after every line or just some? This is something you'll learn through practice, through demonstrations and examples. The compiler won't always know how to advise me, but often it will do its best to give you the answer."
+    },
+    {
+        "header": "Hello, C, line 5 ",
+        "timestamp": "32:00",
+        "content": "First line of code is like importing a library so that you can do things like print things out on the screen. You have to include a so called header file that declares that function to exist. If you omit the header file by accident, it's just not going to work."
+    },
+    {
+        "header": "C# Manual CS50 IO  ",
+        "timestamp": "33:24",
+        "content": "C is a many year old language and it has ample documentation. CS 50 has its own library accessible via header file called CS 50 H. It turns out in C that output is actually pretty easy but input is a little more difficult. We'll see why in a couple of weeks."
+    },
+    {
+        "header": " Printf: Where is the percent sign in C? ",
+        "timestamp": "46:59",
+        "content": "A percent sign is treated specially inside of printf strings. It will figure out where the percent s is and then go and replace it. There's always a solution to those kinds of problems, and thankfully they don't come up all that often."
+    },
+    {
+        "header": "C Data Types  ",
+        "timestamp": "51:44",
+        "content": "In C, there's not only strings as text, and we'll see in more detail over the next couple of weeks what a string really is. As for initials, they can output integers as well. Turns out that printf has different format codes for all sorts of different data types. In five minutes, we'll dive into more detail."
+    },
+    {
+        "header": "C# Basics: Conditionals and More ",
+        "timestamp": "54:28",
+        "content": "In scratch, how you might express if two variables, x and Y have this relationship. In C, the corresponding code is going to look like this. There is a weird inconsistency stylistically when using the keyword if. Through hands on labs and problem sets, you can work through some of those same bumps in the road."
+    },
+    {
+        "header": "In C# for loops, A for loops ",
+        "timestamp": "1:28:16",
+        "content": "This is just an alternative syntax to using the slightly more lines of code. Programmers, once they get more comfortable, tend to prefer this because it just expresses all your same thoughts more succinctly."
+    },
+    {
+        "header": "In the Cloud: While True and While False  ",
+        "timestamp": "1:32:03",
+        "content": "There is indeed a forever block in Scratch, which means do the following forever. Can you think of common cases where you might want to write code that loops forever? Unfortunately, this isn't the best thing to do infinitely when you're in the cloud using a browser."
+    },
+    {
+        "header": "What is a Terminal in Linux? ",
+        "timestamp": "1:36:32",
+        "content": "Linux is an alternative to Macs and PCs that provides you with both a Gui and a command line environment. The terminal window is really just your command line interface to your very own server in the cloud. Over the coming weeks will you have opportunities to play with others as well."
+    },
+    {
+        "header": "Make Mario: a constant for the size of the grid  ",
+        "timestamp": "1:49:35",
+        "content": "All right, well let me propose that we don't only want a three by three grid. We want this to be a little more dynamic. Let's ask the user for the size of this grid as by prompting them with Get int. What would be intuitively, a better solution here?"
+    },
+    {
+        "header": "C# Comments ",
+        "timestamp": "2:02:59",
+        "content": "In C, there's a couple of ways to write comments. Comments are notes for yourself as to what your code is doing and why or how. In pseudocode, comments can be an approximation of what we called last week."
+    },
+    {
+        "header": "CS50: Implicit declarations in the file C ",
+        "timestamp": "2:09:48",
+        "content": "If you define these functions at the bottom of your file, they don't exist on line seven or ten. This is the only time in CS 50 and really in C programming where copy paste is reasonable. You can tease the compiler by giving it just enough of a hint at the top of the file. Now, you could imagine splitting up large programs into smaller parts."
+    },
+    {
+        "header": "Calculator C ",
+        "timestamp": "2:12:00",
+        "content": "C indeed supports a whole bunch of operators mathematically via which we can do addition and subtraction, multiplication, division, and even calculate the remainder when you divide one number by another. But sometimes there are going to be limitations that we bump up against. We have to be bounded ultimately."
+    },
+    {
+        "header": "Calculator 2.8: Decimal truncation ",
+        "timestamp": "2:19:29",
+        "content": " Computers also suffer from potentially what's called truncation, where especially when you're doing math involving floating point values. You might accidentally unknowingly truncate the value, that is, lose everything after the decimal point. Use typecasting to convert one data type to another."
+    }
+    
+]
