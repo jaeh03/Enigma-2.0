@@ -20,15 +20,15 @@ function BufferPage() {
   useEffect(() => {
     if (state && state.videoLink) {
       // Process the video link
-      //processVideoLink(state.videoLink);
+      processVideoLink(state.videoLink);
       
       // Simulate processing the video link
       // For testing, navigate directly
-      
+      /*
       setTimeout(() => {
         navigate("/audio-summary-transcription", { state: { contentType: 'video', contentData: state.videoLink } });
       }, 2000); // Mock delay
-      
+      */
     } else if (state && state.selectedFile) {
       // Process the selected file
       processSelectedFile(state.selectedFile);
@@ -53,7 +53,7 @@ function BufferPage() {
           setTranscriptionData(transcriptionData);
           SummarizeTranscription(transcriptionData).then((summaryData) => {
             navigate("/audio-summary-transcription", {
-              state: { transcriptionData, summaryData },
+              state: { transcriptionData, summaryData, contentType: 'video', contentData: state.videoLink},
             });
           });
         })

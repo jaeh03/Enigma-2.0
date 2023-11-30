@@ -8,6 +8,13 @@ function AudioSummaryTranscription() {
   const location = useLocation();
   const { contentType, contentData, summaryData, transcriptionData } = location.state;
 
+  const youtubeEmbedBaseURL = "https://www.youtube.com/embed/";
+
+  const getYouTubeVideoID = (url) => {
+    const urlParams = new URLSearchParams(new URL(url).search);
+    return urlParams.get('v');
+  };
+
   console.log("Content Type:", contentType); // Debug log
   console.log("Content Data:", contentData); // Debug log
 
@@ -21,11 +28,14 @@ function AudioSummaryTranscription() {
   const renderMediaContent = () => {
     if (contentType === 'video') {
       // Render YouTube video iframe
+      const videoID = getYouTubeVideoID(contentData);
+      const embedUrl = youtubeEmbedBaseURL + videoID;
+
       return (
         <iframe 
           width="560" 
           height="315" 
-          src="https://www.youtube.com/embed/nb6ou_k4OzM" // Assuming this is a video URL
+          src={embedUrl}
           title="YouTube video player" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
