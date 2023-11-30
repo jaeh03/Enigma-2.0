@@ -20,12 +20,28 @@ function BufferPage() {
   useEffect(() => {
     if (state && state.videoLink) {
       // Process the video link
-      processVideoLink(state.videoLink);
+      //processVideoLink(state.videoLink);
+      
+      // Simulate processing the video link
+      // For testing, navigate directly
+      
+      setTimeout(() => {
+        navigate("/audio-summary-transcription", { state: { contentType: 'video', contentData: state.videoLink } });
+      }, 2000); // Mock delay
+      
     } else if (state && state.selectedFile) {
       // Process the selected file
       processSelectedFile(state.selectedFile);
+
+      // Simulate processing the selected file
+      // For testing, navigate directly
+      /*
+      setTimeout(() => {
+        navigate("/audio-summary-transcription", { state: { contentType: 'audio', contentData: state.selectedFile } });
+      }, 2000); // Mock delay
+      */
     }
-  });
+  }, [navigate, state]);
 
   function processVideoLink(videoLink) {
     // TODO: implement validation
@@ -61,6 +77,7 @@ function BufferPage() {
     formData.append("audio", selectedFile);
 
     try {
+  
       // Transcribe the audio
       const response = await client.post("/transcribe-audio/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -79,9 +96,16 @@ function BufferPage() {
       // console.log("Chapters:", autoChatpers);
 
       // Navigate to the summary page
+      /*
       navigate("/audio-summary-transcription", {
         state: { transcriptionData, summaryData },
       });
+      */ 
+     
+      navigate("/audio-summary-transcription", {
+        state: { contentType: 'audio', contentData: state.selectedFile, transcriptionData, summaryData },
+      });
+      
     } catch (error) {
       console.error("Error processing audio file:", error);
     }

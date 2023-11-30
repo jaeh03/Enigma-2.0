@@ -50,8 +50,7 @@ function MainPageUpload({ className }) {
       setSelectedFile(file);
       setSelectedName(file.name);
     } else {
-      const message = "No File selected";
-      setSelectedName(message);
+      setSelectedName("No File selected");
     }
   };
 
@@ -85,11 +84,11 @@ function MainPageUpload({ className }) {
           ></textarea>
         </div>
 
-        <button
+        <label
+          htmlFor="file-input"
           className={`box ${selectedBox === 2 ? "focused-box" : ""}`}
           id="box2"
           onClick={() => handleBoxClick(2)}
-          disabled={isDisabled}
         >
           <FontAwesomeIcon className="icon-img2" icon={faUpload} />
           <input
@@ -97,11 +96,11 @@ function MainPageUpload({ className }) {
             type="file"
             id="file-input"
             onChange={handleFileChange}
-          ></input>
-          <label htmlFor="file-input" id="file-input-label">
-            {selectedBox === 2 ? selectedName || selectedName : "Upload file"}
-          </label>
-        </button>
+            style={{ display: "none" }}
+          />
+          {selectedName || "Upload file"}
+        </label>
+
         <button
           className={`box ${selectedBox === 3 ? "focused-box" : ""}`}
           id="box3"
