@@ -15,7 +15,7 @@ function BufferPage() {
   const state = location.state;
   const navigate = useNavigate();
   const [transcriptionData, setTranscriptionData] = useState("");
-  // const [summaryData, setSummaryData] = useState("");
+  const [summaryData, setSummaryData] = useState("");
 
   useEffect(() => {
     if (state && state.videoLink) {
@@ -92,18 +92,17 @@ function BufferPage() {
       console.log("Summary:", summaryData);
 
       // // Get AssemblyAI auto chapters
-      // const autoChatpers = await AutoChapterAudioData(selectedFile);
-      // console.log("Chapters:", autoChatpers);
+      const autoChatpers = await AutoChapterAudioData(selectedFile);
+      console.log("Chapters:", autoChatpers);
 
       // Navigate to the summary page
-      /*
-      navigate("/audio-summary-transcription", {
-        state: { transcriptionData, summaryData },
-      });
-      */ 
+      // navigate("/audio-summary-transcription", {
+      //   state: { transcriptionData, summaryData },
+      // });
+      
      
       navigate("/audio-summary-transcription", {
-        state: { contentType: 'audio', contentData: state.selectedFile, transcriptionData, summaryData },
+        state: { contentType: 'audio', contentData: state.selectedFile, transcriptionData, summaryData, autoChatpers },
       });
       
     } catch (error) {
