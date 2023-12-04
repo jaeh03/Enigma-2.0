@@ -15,13 +15,13 @@ function BufferPage() {
   const state = location.state;
   const navigate = useNavigate();
   const [transcriptionData, setTranscriptionData] = useState("");
-  // const [summaryData, setSummaryData] = useState("");
+  const [summaryData, setSummaryData] = useState("");
 
   useEffect(() => {
     if (state && state.videoLink) {
       // Process the video link
       processVideoLink(state.videoLink);
-      
+
       // Simulate processing the video link
       // For testing, navigate directly
       /*
@@ -51,13 +51,29 @@ function BufferPage() {
     videoLink = "https://www.youtube.com/watch?v=" + videoId;
 
     // Download audio and transcribe it
+    // Download the audio from the video link
     DownloadAudio(videoLink).then((audioData) => {
+      // Transcribe the audio data
       TranscribeAudioData(audioData)
         .then((transcriptionData) => {
+          // Set transcription data to state
           setTranscriptionData(transcriptionData);
+
+          // Summarize the transcription
           SummarizeTranscription(transcriptionData).then((summaryData) => {
-            navigate("/audio-summary-transcription", {
-              state: { transcriptionData, summaryData, contentType: 'video', contentData: state.videoLink},
+            // Auto chapter the audio data
+            AutoChapterAudioData(audioData).then((autoChapters) => {
+              console.log("Chapters inside processVideoLink:", autoChapters);
+              // Navigate to the summary and transcription page with all the data
+              navigate("/audio-summary-transcription", {
+                state: {
+                  transcriptionData,
+                  summaryData,
+                  contentType: "video",
+                  contentData: videoLink,
+                  autoChapters, // Add autoChapters to the state
+                },
+              });
             });
           });
         })
@@ -81,7 +97,6 @@ function BufferPage() {
     formData.append("audio", selectedFile);
 
     try {
-  
       // Transcribe the audio
       const response = await client.post("/transcribe-audio/", formData, {
         headers: { "Content-Type": "multipart/form-data" },
@@ -96,20 +111,23 @@ function BufferPage() {
       console.log("Summary:", summaryData);
 
       // // Get AssemblyAI auto chapters
-      // const autoChatpers = await AutoChapterAudioData(selectedFile);
-      // console.log("Chapters:", autoChatpers);
+      const autoChatpers = await AutoChapterAudioData(selectedFile);
+      console.log("Chapters:", autoChatpers);
 
       // Navigate to the summary page
-      /*
+      // navigate("/audio-summary-transcription", {
+      //   state: { transcriptionData, summaryData },
+      // });
+
       navigate("/audio-summary-transcription", {
-        state: { transcriptionData, summaryData },
+        state: {
+          contentType: "audio",
+          contentData: state.selectedFile,
+          transcriptionData,
+          summaryData,
+          autoChatpers,
+        },
       });
-      */ 
-     
-      navigate("/audio-summary-transcription", {
-        state: { contentType: 'audio', contentData: state.selectedFile, transcriptionData, summaryData },
-      });
-      
     } catch (error) {
       console.error("Error processing audio file:", error);
     }
@@ -170,11 +188,14 @@ async function SummarizeTranscription(transcriptionData) {
   }
 }
 
-async function AutoChapterAudioData(audioFile) {
+async function AutoChapterAudioData(audioData) {
   try {
+    // Convert Uint8Array to Blob
+    const audioBlob = new Blob([audioData], { type: "audio/wav" }); // Adjust MIME type as necessary
+
     // Create a new FormData object to send the audio file
     const formData = new FormData();
-    formData.append("audio_file", audioFile);
+    formData.append("audio_file", audioBlob, "audio.wav"); // You may choose a different file name
 
     // Make a POST request to the auto_chapter endpoint
     const response = await client.post("/auto_chapter/", formData);
@@ -185,7 +206,7 @@ async function AutoChapterAudioData(audioFile) {
       console.error("Error:", response.status, response.statusText);
     }
   } catch (error) {
-    console.error("API call error: ", error);
+    console.error("API call error in auto chaptering:", error);
   }
 }
 
