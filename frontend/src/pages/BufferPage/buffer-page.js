@@ -111,8 +111,8 @@ function BufferPage() {
       console.log("Summary:", summaryData);
 
       // // Get AssemblyAI auto chapters
-      const autoChatpers = await AutoChapterAudioData(selectedFile);
-      console.log("Chapters:", autoChatpers);
+      const autoChapters = await AutoChapterAudioData_Upload(selectedFile);
+      console.log("Chapters:", autoChapters);
 
       // Navigate to the summary page
       // navigate("/audio-summary-transcription", {
@@ -125,7 +125,7 @@ function BufferPage() {
           contentData: state.selectedFile,
           transcriptionData,
           summaryData,
-          autoChatpers,
+          autoChapters,
         },
       });
     } catch (error) {
@@ -207,6 +207,25 @@ async function AutoChapterAudioData(audioData) {
     }
   } catch (error) {
     console.error("API call error in auto chaptering:", error);
+  }
+}
+
+async function AutoChapterAudioData_Upload(audioFile) {
+  try {
+    // Create a new FormData object to send the audio file
+    const formData = new FormData();
+    formData.append("audio_file", audioFile);
+
+    // Make a POST request to the auto_chapter endpoint
+    const response = await client.post("/auto_chapter/", formData);
+
+    if (response.status === 200) {
+      return response.data.chapters;
+    } else {
+      console.error("Error:", response.status, response.statusText);
+    }
+  } catch (error) {
+    console.error("API call error: ", error);
   }
 }
 
