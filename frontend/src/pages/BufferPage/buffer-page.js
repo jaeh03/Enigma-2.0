@@ -46,6 +46,10 @@ function BufferPage() {
   function processVideoLink(videoLink) {
     // TODO: implement validation
 
+    // Clean up the video link
+    const videoId = videoLink.split("v=")[1].split("&")[0];
+    videoLink = "https://www.youtube.com/watch?v=" + videoId;
+
     // Download audio and transcribe it
     DownloadAudio(videoLink).then((audioData) => {
       TranscribeAudioData(audioData)
