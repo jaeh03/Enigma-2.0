@@ -45,23 +45,32 @@ function BufferPage() {
 
   function processVideoLink(videoLink) {
     // TODO: implement validation
-
-    // Download audio and transcribe it
-    DownloadAudio(videoLink).then((audioData) => {
-      TranscribeAudioData(audioData)
-        .then((transcriptionData) => {
-          setTranscriptionData(transcriptionData);
-          SummarizeTranscription(transcriptionData).then((summaryData) => {
-            navigate("/audio-summary-transcription", {
-              state: { transcriptionData, summaryData, contentType: 'video', contentData: state.videoLink},
+    // AutoChapterAudioData(videoLink).then((autoChatpers) => {
+    //   console.log("Chapters:", autoChatpers);
+    
+      DownloadAudio(videoLink).then((audioData) => {
+        TranscribeAudioData(audioData)
+          .then((transcriptionData) => {
+            setTranscriptionData(transcriptionData);
+            SummarizeTranscription(transcriptionData).then((summaryData) => {
+              navigate("/audio-summary-transcription", {
+                state: {
+                  transcriptionData,
+                  summaryData,
+                  contentType: 'video',
+                  contentData: state.videoLink,
+                  // autoChatpers, // Add autoChatpers to the state
+                },
+              });
             });
+          })
+          .catch((error) => {
+            console.log("Error transcribing video link: " + error);
           });
-        })
-        .catch((error) => {
-          console.log("Error transcribing video link: " + error);
-        });
-    });
+      });
+    
   }
+    
 
   return (
     <div className="summary-page">

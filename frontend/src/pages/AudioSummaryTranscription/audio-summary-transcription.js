@@ -42,6 +42,7 @@ function AudioSummaryTranscription() {
       const start = parseInt(chapterMatch[1], 10);
       const end = parseInt(chapterMatch[2], 10);
       const content = chapterMatch[3];
+      const gist = chapterMatch[4];
   
       // Now you can access and manipulate the start, end, and content for each chapter
       console.log(`Chapters ${i + 1}:`);
@@ -59,11 +60,12 @@ function AudioSummaryTranscription() {
     }
   }
 
+  // const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
   const renderMediaContent = () => {
     if (contentType === 'video') {
       // Render YouTube video iframe
       const videoID = getYouTubeVideoID(contentData);
-      const embedUrl = youtubeEmbedBaseURL + videoID;
+      const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
 
       return (
         <iframe 

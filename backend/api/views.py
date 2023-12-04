@@ -189,7 +189,7 @@ def auto_chapter(request):
             return Response({"message": "Missing audio file."}, status=status.HTTP_400_BAD_REQUEST)
 
         # Save the uploaded file temporarily
-        temp_filename = "/tmp/uploaded_audio.mp3"
+        temp_filename = f"/tmp/{audio_file.name}"
         with open(temp_filename, 'wb+') as destination:
             for chunk in audio_file.chunks():
                 destination.write(chunk)
@@ -200,7 +200,7 @@ def auto_chapter(request):
 
         chapters_list = []
         for chapter in transcript.chapters:
-            chapters_list.append(f"{chapter.start}-{chapter.end}: {chapter.headline}")
+            chapters_list.append(f"{chapter.start}-{chapter.end}: {chapter.headline} ")
 
         # Return a response
         return Response({"message": "Transcription successful!", "chapters": chapters_list}, status=status.HTTP_200_OK)
