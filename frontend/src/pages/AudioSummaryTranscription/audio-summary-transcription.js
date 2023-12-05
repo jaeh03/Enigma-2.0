@@ -1,12 +1,14 @@
 import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import JsPDF from "jspdf";
+import ReactPlayer from "react-player";
 import "./audio-summary-transcription.css";
 import "./PdfGenerator.css";
 
 function AudioSummaryTranscription() {
   const location = useLocation();
   const audioRef = useRef(null);
+  const playerRef = useRef(null);
   const {
     contentType,
     contentData,
@@ -16,7 +18,6 @@ function AudioSummaryTranscription() {
   } = location.state;
 
   const youtubeEmbedBaseURL = "https://www.youtube.com/embed/";
-  
 
   const getYouTubeVideoID = (url) => {
     const urlParams = new URLSearchParams(new URL(url).search);
@@ -72,23 +73,20 @@ function AudioSummaryTranscription() {
   }
 
   // const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
-  const renderMediaContent = () => {  
+  const renderMediaContent = () => {
     if (contentType === "video") {
       // Render YouTube video iframe
       const videoID = getYouTubeVideoID(contentData);
-      const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
-  
+      const embedUrl = `${youtubeEmbedBaseURL}${videoID}`;
       return (
-        <iframe
-        id="iframe"
-          width="560"
-          height="315"
-          src={embedUrl}
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen
-        ></iframe>
+        <ReactPlayer
+          ref={playerRef}
+          url={embedUrl}
+          controls={true}
+          playing={false}
+          width="100%"
+          height="100%"
+        />
       );
     } else if (contentType === "audio") {
       console.log("Rendering audio player"); // Debug log
@@ -102,14 +100,14 @@ function AudioSummaryTranscription() {
       );
     }
   };
-  
-  // For video player 
+
+  // For video player
   // const navigateToTimestamp = (timestamp) => {
   //   const iframe = document.querySelector('iframe');
   //   if (iframe) {
   //     const videoID = getYouTubeVideoID(contentData);
   //     const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=${timestamp / 100}`;
-      
+
   //     iframe.contentWindow.postMessage(
   //       {
   //         event: 'seekTo',
@@ -120,29 +118,23 @@ function AudioSummaryTranscription() {
   //     );
   //   }
   // };
-  
+
   const navigateToTimestamp = (timestamp) => {
-    // Check if timestamp is a string
-    if (typeof timestamp === 'string') {
-      // Split the timestamp string into minutes and seconds
-      const [minutes, seconds] = timestamp.split(':').map(Number);
-  
-      // Check if both minutes and seconds are valid numbers
+    if (typeof timestamp === "string") {
+      const [minutes, seconds] = timestamp.split(":").map(Number);
       if (!isNaN(minutes) && !isNaN(seconds)) {
-        // Convert to seconds and set as currentTime
         const totalSeconds = minutes * 60 + seconds;
-  
-        if (audioRef.current) {
-          audioRef.current.currentTime = totalSeconds;
+        if (playerRef.current) {
+          playerRef.current.seekTo(totalSeconds, "seconds");
         }
       } else {
-        console.error('Invalid timestamp:', timestamp);
+        console.error("Invalid timestamp:", timestamp);
       }
     } else {
-      console.error('Timestamp should be a string:', timestamp);
+      console.error("Timestamp should be a string:", timestamp);
     }
   };
-  
+
   return (
     <div className="summary-page">
       <div className="export-btn-div">
@@ -164,12 +156,18 @@ function AudioSummaryTranscription() {
               <br></br>
               {parsedChapters.map((chapter, index) => (
                 <div key={index}>
-                  <a className="timestamps" onClick={() => navigateToTimestamp(msToMMSS(chapter.start))}>
-                  {msToMMSS(chapter.start)}
+                  <a
+                    className="timestamps"
+                    onClick={() => navigateToTimestamp(msToMMSS(chapter.start))}
+                  >
+                    {msToMMSS(chapter.start)}
                   </a>
                   -
-                  <a className="timestamps" onClick={() => navigateToTimestamp(msToMMSS(chapter.end))}>
-                  {msToMMSS(chapter.end)}
+                  <a
+                    className="timestamps"
+                    onClick={() => navigateToTimestamp(msToMMSS(chapter.end))}
+                  >
+                    {msToMMSS(chapter.end)}
                   </a>
                   : {chapter.content}
                 </div>
