@@ -70,14 +70,15 @@ function AudioSummaryTranscription() {
   }
 
   // const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
-  const renderMediaContent = () => {
+  const renderMediaContent = () => {  
     if (contentType === "video") {
       // Render YouTube video iframe
       const videoID = getYouTubeVideoID(contentData);
       const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
-
+  
       return (
         <iframe
+        id="iframe"
           width="560"
           height="315"
           src={embedUrl}
@@ -99,6 +100,32 @@ function AudioSummaryTranscription() {
       );
     }
   };
+  
+  const navigateToTimestamp = (timestamp) => {
+    const iframe = document.querySelector('iframe');
+    if (iframe) {
+      const videoID = getYouTubeVideoID(contentData);
+      const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=${timestamp / 100}`;
+      
+      iframe.contentWindow.postMessage(
+        {
+          event: 'seekTo',
+          data: timestamp / 1000, // Convert timestamp to seconds
+          embedUrl: embedUrl,
+        },
+        '*'
+      );
+    }
+  };
+  
+  // const setCurrentTime = (slideNum) => {
+  //   var object = [ 0, 133, 193 ];
+  //   player.seekTo(object[slideNum]);
+  // };
+  
+
+ 
+  
 
   return (
     <div className="summary-page">
@@ -122,14 +149,16 @@ function AudioSummaryTranscription() {
               {parsedChapters.map((chapter, index) => (
                 <div key={index}>
                   <a
-                    href="https://www.google.ca"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    href={`#${chapter.start}`}
+                    onClick={() => navigateToTimestamp(chapter.start)}
                   >
                     {msToMMSS(chapter.start)}
                   </a>{" "}
                   -
-                  <a href={`your-link-here-for-end-${chapter.end}`}>
+                  <a
+                    href={`#${chapter.end}`}
+                    onClick={() => navigateToTimestamp(chapter.end)}
+                  >
                     {" " + msToMMSS(chapter.end)}
                   </a>{" "}
                   : {chapter.content}
