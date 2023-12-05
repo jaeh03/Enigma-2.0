@@ -28,12 +28,6 @@ function AudioSummaryTranscription() {
   console.log("Content Type:", contentType); // Debug log
   console.log("Content Data:", contentData); // Debug log
 
-  const generatePdf = () => {
-    const report = new JsPDF("portrait", "pt", "a4");
-    report.html(document.querySelector("#report")).then(() => {
-      report.save("report.pdf");
-    });
-  };
 
   function msToMMSS(milliseconds) {
     const totalSeconds = Math.floor(milliseconds / 1000);
@@ -72,6 +66,37 @@ function AudioSummaryTranscription() {
       });
     }
   }
+
+
+  const generatePdf = () => {
+    // const report = new JsPDF("portrait", "pt", "letter");
+    const report = new JsPDF({
+      orientation: "portrait",
+      unit: "px",
+      format: "letter",
+      
+      
+    });
+    // Add content manually using text() or other drawing functions
+    report.text(`${summaryData}`, 30, 120, { maxWidth: 400 });
+    report.setFont("helvetica", "bold");
+    report.text("Summarization",30,100);
+
+
+    report.text("Chapters", 30, 40 )
+    report.setFont("helvetica", "normal");
+    // Add lecture data
+    parsedChapters.forEach((chapter, index) => {
+      const yPosition = 60 + index * 100; // Adjust the spacing as needed
+      report.text(`${msToMMSS(chapter.start)} - ${msToMMSS(chapter.end)} `, 30, yPosition);
+      report.setFontSize(16);
+      report.text(chapter.content, 30, yPosition + 20, { maxWidth: 800 }); 
+    });
+
+    report.save("report.pdf");
+
+    
+  };
 
   // const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=20`;
   const renderMediaContent = () => {
