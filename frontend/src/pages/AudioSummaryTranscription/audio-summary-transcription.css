@@ -14,6 +14,10 @@ a{
   font-weight: 500;
 }
 
+.player-div{
+  height: 350px;
+}
+
 .summary-container {
   display: flex;
   width: 100%;

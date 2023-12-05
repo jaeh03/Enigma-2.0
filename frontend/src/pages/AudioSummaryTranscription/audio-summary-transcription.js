@@ -80,7 +80,9 @@ function AudioSummaryTranscription() {
       const videoID = getYouTubeVideoID(contentData);
       const embedUrl = `${youtubeEmbedBaseURL}${videoID}`;
       return (
+        <div className="player-div">
         <ReactPlayer
+          className="player"
           ref={playerRef}
           url={embedUrl}
           controls={true}
@@ -88,6 +90,7 @@ function AudioSummaryTranscription() {
           width="100%"
           height="100%"
         />
+        </div>
       );
     } else if (contentType === "audio") {
       console.log("Rendering audio player"); // Debug log
