@@ -1,12 +1,15 @@
 import React, { useState, useRef } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import JsPDF from "jspdf";
 import ReactPlayer from "react-player";
 import "./audio-summary-transcription.css";
 import "./PdfGenerator.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileExport } from "@fortawesome/free-solid-svg-icons";
 
 function AudioSummaryTranscription() {
   const location = useLocation();
+  const navigate = useNavigate();
   const audioRef = useRef(null);
   const playerRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -122,31 +125,18 @@ function AudioSummaryTranscription() {
       const audioUrl = URL.createObjectURL(contentData);
       console.log("Audio URL:", audioUrl); // Debug log
       return (
-        <audio controls ref={audioRef}>
+        <div >
+        <audio className="audio" controls ref={audioRef}>
           <source src={audioUrl} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
+        </div>
       );
     }
   };
-
-  // For video player
-  // const navigateToTimestamp = (timestamp) => {
-  //   const iframe = document.querySelector('iframe');
-  //   if (iframe) {
-  //     const videoID = getYouTubeVideoID(contentData);
-  //     const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=${timestamp / 100}`;
-
-  //     iframe.contentWindow.postMessage(
-  //       {
-  //         event: 'seekTo',
-  //         data: timestamp / 1000, // Convert timestamp to seconds
-  //         embedUrl: embedUrl,
-  //       },
-  //       '*'
-  //     );
-  //   }
-  // };
+  const navigateToNewSummarize = () => {
+    navigate("/new-summary");
+  }
 
   const navigateToTimestamp = (timestamp) => {
     if (typeof timestamp === "string") {
@@ -175,10 +165,7 @@ function AudioSummaryTranscription() {
       <div className="export-btn-div">
         <button className="export-btn" onClick={generatePdf}>
           Export Notes
-          <i
-            className="fa-regular fa-file-export"
-            style={{ marginLeft: "5px" }}
-          ></i>
+          <FontAwesomeIcon className="icon-img2" icon={faFileExport} />
         </button>
       </div>
 
@@ -197,7 +184,7 @@ function AudioSummaryTranscription() {
                   >
                     {msToMMSS(chapter.start)}
                   </a>
-                  -
+                    -  
                   <a
                     className="timestamps"
                     onClick={() => navigateToTimestamp(msToMMSS(chapter.end))}
@@ -207,8 +194,13 @@ function AudioSummaryTranscription() {
                   : {chapter.content}
                 </div>
               ))}
+
             </div>
           </div>
+          
+              <button className="next-button" onClick={navigateToNewSummarize}>
+                New Summary
+              </button>
         </div>
         <div className="line-breaker"></div>
         <div className="right-half">

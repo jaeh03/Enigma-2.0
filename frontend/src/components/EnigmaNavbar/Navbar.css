@@ -16,8 +16,17 @@
   font-size: 40px;
   text-decoration: none;
   color: black;
-  cursor: pointer;
+  
 }
+
+.navbar-title {
+  font-weight: 600;
+}
+
+.logo-image{
+  width: 300px;
+}
+
 
 .icon-img{
   width: 10%;
@@ -34,7 +43,7 @@
   grid-gap: 10px;
   list-style: none;
   text-align: center;
-  width: 78vw;
+  width: 75vw;
   justify-content: end;
   margin-top: 40px;
   font-size: 20px;
@@ -48,11 +57,12 @@
   height: 39px;
   margin-top: 40px;
   width: 91px;
+  font-weight: 600;
 }
 
 .nav-links:hover{
   background-color: white;
-  border-radius: 4px;
+  border-radius: 5px;
   transition: all 0.2s ease-out;
 }
 

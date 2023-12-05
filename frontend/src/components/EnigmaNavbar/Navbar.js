@@ -6,6 +6,7 @@ import { Nav } from "react-bootstrap";
 import { MenuItems } from "./MenuItems";
 import { Button } from "./Button";
 import "./Navbar.css";
+import imgLogo from "../../images/Logo.png";
 
 class EnigmaNavbar extends Component {
   state = { clicked: false };
@@ -16,11 +17,12 @@ class EnigmaNavbar extends Component {
   render() {
     return (
       <nav className="nav-bar inter-semi-bold-black-32px">
-      <a className="navbar-logo" href="/">
-        <h1>
-          Enigma TLDV
-        </h1>
-      </a>
+        <a className="navbar-logo" href="/">
+          <img className="logo-image" src={imgLogo} alt="Logo" />
+          {/* <h1 className="navbar-title">
+            Enigma TLDV
+          </h1> */}
+        </a>
         <div className="menu-icon" onClick={this.handleClick}>
           <i
             className={this.state.clicked ? "fas fa-times" : "fas fa-bars"}

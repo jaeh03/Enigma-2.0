@@ -24,7 +24,7 @@ const TextSummary = () => {
   };
   
   return (
-    <div className="background">
+    <div className="background-text">
       <div className="title-area">
         <div className="fab fa-react">Text Summary</div>
       </div>

@@ -1,12 +1,12 @@
-.background {
+.background-text {
     background-image: url(https://cdn.animaapp.com/projects/64252e1554bf0badf3b6075d/releases/64fd585518c1533d05dd887e/img/background.png);
-    margin: 0;
     padding: 0;
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
     height: 100vh;
     overflow: hidden;
+    margin-top: 20px;
 }
 
 .text-summary-container {
@@ -24,7 +24,7 @@
 }
 
 .text-line {
-	height: 100%;
+	height: 90%;
     width: 2px;
     background-color: black;
 }
@@ -142,5 +142,6 @@
 
   .pointFormContainer{
     margin-left: 20px;
+    margin-top: -50px;
   }
   

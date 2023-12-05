@@ -18,10 +18,23 @@ a{
   height: 350px;
 }
 
+.audio{
+  width: 100%;
+}
+
 .summary-container {
   display: flex;
   width: 100%;
   height: 100%;
+}
+
+.timestamps{
+  font-weight: 600;
+  color: #096f6c;
+}
+
+.timestamps:hover{
+  color: #000;
 }
 
 .left-half {
@@ -34,6 +47,20 @@ a{
   display: flex;
   flex-direction: column;
 
+}
+
+.next-button{
+  all: unset; 
+  text-align: center; /* Center text horizontally */
+  background-color: #ffffff;
+  padding: 10px 0px;
+  border-radius: 15px;
+  margin: 10px 0px;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 700;
+  width: 150px;
+  height:30px;
 }
 
 .upper-half {
@@ -60,7 +87,7 @@ a{
 }
 
 .textarea {
-  height: 100%;
+  height: 90%;
   width: 100%;
   background-color: #ffffff5e;
   border-radius: 5px;
@@ -102,19 +129,28 @@ a{
   border:none;
 }
 
-.summary-page .export-btn{
+.export-btn{
   background-color: #ffffff;
-  padding: 5px;
   border-radius: 10px;
   margin: 10px 0px;
   cursor: pointer;
   font-size: 16px;
   font-weight: 700;
   border: none;
-  height:30px;  
+  height:35px;  
+  display: flex;
+  align-items: center;
+  padding: 8px; /* Adjust padding as needed */
 }
 
-.summary-page .export-btn-div{
+.icon-img2 {
+  margin-left: 8px; /* Adjust margin as needed to create space between text and icon */
+  width: 25px;
+}
+
+.export-btn-div{
   float: right;
-  padding-right: 2%;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
 }

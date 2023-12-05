@@ -14,7 +14,10 @@ function NewSummary({ className }) {
     const navigate = useNavigate();
     const [isDisabled, setIsDisabled] = useState(false); // State to disable all buttons
     const [selectedBox, setSelectedBox] = useState(null);
-
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [selectedName, setSelectedName] = useState("");
+    const [videoLink, setVideoLink] = useState("");
+ 
   
     const handleBoxClick = (boxNumber) => {
       setSelectedBox(boxNumber);
@@ -27,39 +30,34 @@ function NewSummary({ className }) {
       }
     };
   
-    const selectPage = (page) => {
-      // Implement your selectPage logic here
+    const navigateToSummarize = () => {
+      if (selectedBox === 1) {
+        navigate("/buffer-page", { state: { videoLink } });
+      } else if (selectedBox === 2) {
+        if (
+          selectedFile &&
+          typeof selectedFile === "object" &&
+          selectedFile.name
+        ) {
+          navigate("/buffer-page", { state: { selectedFile } });
+        } else {
+          alert("Please select a file before clicking the button.");
+        }
+      } else if (selectedBox === 3) {
+        navigate("/text-summary");
+      }
     };
   
-    const navigateToSummarize = () => {
-      // 👇️ navigate to /audio-summary-transcription page
-      navigate('/audio-summary-transcription');
-    };
-
-    const [selectedFile, setSelectedFile] = useState(null);
-    const [selectedName, setSelectedName] = useState("");
-
     const handleFileChange = (event) => {
       const file = event.target.files[0];
       if (file) {
         setSelectedFile(file);
         setSelectedName(file.name);
       } else {
-        // Handle the case where no file is selected, e.g., display an error message or reset the selected file and name.
-        const message = "No File selected"
-        setSelectedName(message)
+        setSelectedName("No File selected");
       }
-      // setIsDisabled(true); // Disable all buttons when a file is selected
-
-      // const selectedFile = event.target.files[0];
-      // const selectedName = selectedFile ? selectedFile.name : null;
-      // setSelectedFile(selectedFile);
-      // setSelectedName(selectedFile.name);
-
-      // Handle file selection here
-  
-   
     };
+  
 
     const [rating, setRating] = useState(null);
     const [response, setResponse] = useState('');
@@ -68,13 +66,13 @@ function NewSummary({ className }) {
       setRating(selectedRating);
       switch (selectedRating) {
         case 'good':
-          setResponse('Thank you for your feedback! We are glad you found it good.');
+          setResponse('Thank you for your positive feedback!');
           break;
         case 'great':
           setResponse('Awesome! Your feedback is greatly appreciated.');
           break;
         case 'bad':
-          setResponse('We are sorry for your inconvience');
+          setResponse("We're sorry to hear that your experience wasn't up to your expectations.");
           break;
         default:
           setResponse('');
@@ -91,42 +89,54 @@ function NewSummary({ className }) {
         {/* Three Boxes (2 Buttons and one text area) */}
 
         <div class="container">
-          <div class={`box ${selectedBox === 1 ? 'focused-box' : ''}`} id="box1"
+        <div
+          className={`box ${selectedBox === 1 ? "focused-box" : ""}`}
+          id="box1"
           onClick={() => handleBoxClick(1)}
-          disabled={isDisabled}>
-          <FontAwesomeIcon class="icon-img" icon={faYoutube} />
-          <textarea className="video-link" placeholder="video link" disabled={isDisabled}/>
-          </div>
+          disabled={isDisabled}
+        >
+          <FontAwesomeIcon className="icon-img" icon={faYoutube} />
+          <textarea
+            className="video-link"
+            placeholder="video link"
+            onBlur={(event) => {
+              setVideoLink(event.target.value);
+            }}
+            disabled={isDisabled}
+          ></textarea>
+        </div>
 
-
-          <button class={`box ${selectedBox === 2 ? 'focused-box' : ''}`} id="box2"
+        <label
+          htmlFor="file-input"
+          className={`box ${selectedBox === 2 ? "focused-box" : ""}`}
+          id="box2"
           onClick={() => handleBoxClick(2)}
-          disabled={isDisabled}>
-
-          <FontAwesomeIcon class="icon-img2" icon={faUpload} />
-          <input className="input-file"
+        >
+          <FontAwesomeIcon className="icon-img2" icon={faUpload} />
+          <input
+            className="input-file"
             type="file"
             id="file-input"
             onChange={handleFileChange}
-          ></input>
-          <label htmlFor="file-input" id="file-input-label">
-          {selectedBox === 2 ? selectedName || selectedName : "Upload file"}
-          </label>
+            style={{ display: "none" }}
+          />
+          {selectedName || "Upload file"}
+        </label>
 
-          </button>
-          <button class={`box ${selectedBox === 3 ? 'focused-box' : ''}`} id="box3"
+        <button
+          className={`box ${selectedBox === 3 ? "focused-box" : ""}`}
+          id="box3"
           onClick={() => handleBoxClick(3)}
           disabled={isDisabled}
-          >
-            <FontAwesomeIcon class="icon-img3" icon={faFileLines} />
-            <p className="summary-title">input summary</p>
-          </button>
-          
-        </div>
-
-        <button className="next-button" onClick={navigateToSummarize}>
-          Next
+        >
+          <FontAwesomeIcon className="icon-img3" icon={faFileLines} />
+          <p className="input-summaryBtn">input summary</p>
         </button>
+      </div>
+
+      <button className="next-button" onClick={navigateToSummarize}>
+        Next
+      </button>
 
         {/* Feedback Questionaire */}
 
