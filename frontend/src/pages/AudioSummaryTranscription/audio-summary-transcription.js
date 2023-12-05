@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useLocation } from "react-router-dom";
 import JsPDF from "jspdf";
 import "./audio-summary-transcription.css";
@@ -6,6 +6,7 @@ import "./PdfGenerator.css";
 
 function AudioSummaryTranscription() {
   const location = useLocation();
+  const audioRef = useRef(null);
   const {
     contentType,
     contentData,
@@ -15,6 +16,7 @@ function AudioSummaryTranscription() {
   } = location.state;
 
   const youtubeEmbedBaseURL = "https://www.youtube.com/embed/";
+  
 
   const getYouTubeVideoID = (url) => {
     const urlParams = new URLSearchParams(new URL(url).search);
@@ -93,7 +95,7 @@ function AudioSummaryTranscription() {
       const audioUrl = URL.createObjectURL(contentData);
       console.log("Audio URL:", audioUrl); // Debug log
       return (
-        <audio controls>
+        <audio controls ref={audioRef}>
           <source src={audioUrl} type="audio/mpeg" />
           Your browser does not support the audio element.
         </audio>
@@ -101,32 +103,46 @@ function AudioSummaryTranscription() {
     }
   };
   
-  const navigateToTimestamp = (timestamp) => {
-    const iframe = document.querySelector('iframe');
-    if (iframe) {
-      const videoID = getYouTubeVideoID(contentData);
-      const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=${timestamp / 100}`;
+  // For video player 
+  // const navigateToTimestamp = (timestamp) => {
+  //   const iframe = document.querySelector('iframe');
+  //   if (iframe) {
+  //     const videoID = getYouTubeVideoID(contentData);
+  //     const embedUrl = `${youtubeEmbedBaseURL}${videoID}?start=${timestamp / 100}`;
       
-      iframe.contentWindow.postMessage(
-        {
-          event: 'seekTo',
-          data: timestamp / 1000, // Convert timestamp to seconds
-          embedUrl: embedUrl,
-        },
-        '*'
-      );
+  //     iframe.contentWindow.postMessage(
+  //       {
+  //         event: 'seekTo',
+  //         data: timestamp / 1000, // Convert timestamp to seconds
+  //         embedUrl: embedUrl,
+  //       },
+  //       '*'
+  //     );
+  //   }
+  // };
+  
+  const navigateToTimestamp = (timestamp) => {
+    // Check if timestamp is a string
+    if (typeof timestamp === 'string') {
+      // Split the timestamp string into minutes and seconds
+      const [minutes, seconds] = timestamp.split(':').map(Number);
+  
+      // Check if both minutes and seconds are valid numbers
+      if (!isNaN(minutes) && !isNaN(seconds)) {
+        // Convert to seconds and set as currentTime
+        const totalSeconds = minutes * 60 + seconds;
+  
+        if (audioRef.current) {
+          audioRef.current.currentTime = totalSeconds;
+        }
+      } else {
+        console.error('Invalid timestamp:', timestamp);
+      }
+    } else {
+      console.error('Timestamp should be a string:', timestamp);
     }
   };
   
-  // const setCurrentTime = (slideNum) => {
-  //   var object = [ 0, 133, 193 ];
-  //   player.seekTo(object[slideNum]);
-  // };
-  
-
- 
-  
-
   return (
     <div className="summary-page">
       <div className="export-btn-div">
@@ -148,19 +164,13 @@ function AudioSummaryTranscription() {
               <br></br>
               {parsedChapters.map((chapter, index) => (
                 <div key={index}>
-                  <a
-                    href={`#${chapter.start}`}
-                    onClick={() => navigateToTimestamp(chapter.start)}
-                  >
-                    {msToMMSS(chapter.start)}
-                  </a>{" "}
+                  <a className="timestamps" onClick={() => navigateToTimestamp(msToMMSS(chapter.start))}>
+                  {msToMMSS(chapter.start)}
+                  </a>
                   -
-                  <a
-                    href={`#${chapter.end}`}
-                    onClick={() => navigateToTimestamp(chapter.end)}
-                  >
-                    {" " + msToMMSS(chapter.end)}
-                  </a>{" "}
+                  <a className="timestamps" onClick={() => navigateToTimestamp(msToMMSS(chapter.end))}>
+                  {msToMMSS(chapter.end)}
+                  </a>
                   : {chapter.content}
                 </div>
               ))}
