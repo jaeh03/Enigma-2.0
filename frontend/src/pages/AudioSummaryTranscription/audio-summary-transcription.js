@@ -126,6 +126,8 @@ function AudioSummaryTranscription() {
         const totalSeconds = minutes * 60 + seconds;
         if (playerRef.current) {
           playerRef.current.seekTo(totalSeconds, "seconds");
+        } else if (audioRef.current) {
+          audioRef.current.currentTime = totalSeconds;
         }
       } else {
         console.error("Invalid timestamp:", timestamp);
