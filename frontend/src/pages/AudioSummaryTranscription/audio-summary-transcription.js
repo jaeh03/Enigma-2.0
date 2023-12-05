@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 import JsPDF from "jspdf";
 import ReactPlayer from "react-player";
@@ -9,6 +9,7 @@ function AudioSummaryTranscription() {
   const location = useLocation();
   const audioRef = useRef(null);
   const playerRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(false);
   const {
     contentType,
     contentData,
@@ -83,7 +84,7 @@ function AudioSummaryTranscription() {
           ref={playerRef}
           url={embedUrl}
           controls={true}
-          playing={false}
+          playing={isPlaying}
           width="100%"
           height="100%"
         />
@@ -126,8 +127,12 @@ function AudioSummaryTranscription() {
         const totalSeconds = minutes * 60 + seconds;
         if (playerRef.current) {
           playerRef.current.seekTo(totalSeconds, "seconds");
+          setIsPlaying(true);
         } else if (audioRef.current) {
           audioRef.current.currentTime = totalSeconds;
+          audioRef.current.play().catch((error) => {
+            console.error("Error attempting to play audio:", error);
+          });
         }
       } else {
         console.error("Invalid timestamp:", timestamp);
