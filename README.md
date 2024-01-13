@@ -2,49 +2,45 @@
 ## Authors and Acknowledgement
 John Ho, William Ibarra, Hajra Rizvi, Chris Yeung
 
+![Enigma_Home](https://github.com/jaeh03/Enigma-2.0/assets/84588576/291e165a-5981-416b-9e0c-e35d43849217)
+
 ## Description 
 Enigma is an application that analyzes audio and video. The application transcribes, summarizes, provide bookmarks via auto chaptering and topic detection using OpenAI and Assembly AI APIs. The user provides a video URL or file and the application strips the audio from the video and applies audio intelligence to provide the user with several options for analysis. 
 
 ## Project Status 
-As of October 17th, 2023, this project continues to be maintained and supported.
+As of January 9th, 2024, this project is no longer actively developed.
 
 ## React/Django
 
 Enigma uses a React(Node js) and Django(Python) frontend and backend.
 
-## Current list of installations
-
-Please update the read me as you install more installations. Backend installations can be found in the **_requirements.txt_** for the backend and the **_package.json_** for the frontend.
-
-- backend
-
-```
-pip install djangorestframework
-pip install django-cors-headers
-```
-
-- frontend
-
-```
-npm install axios
-npm install react-bootstrap bootstrap
-```
 ## What Docker commands will I need to know?
 
-At the moment, you will likely only need to know 2 commands:
-
-1. The first command allows you to run your **docker-compose.yaml** script, with the "-d" prefix allowing you to run it in detached mode; effectively giving you
+1. (PROD) The first command allows you to run your **docker-compose.yaml** script, with the "-d" prefix allowing you to run it in detached mode; effectively giving you
    permission to use the console while your container is running.
 
 ```
 docker-compose up -d
 ```
 
-2. The second command will shut down the container.
+2. (PROD) The second command will shut down the container.
 
 ```
 docker-compose down
 ```
+
+3. (DEV) To spin up backend, frontend, and nginx in dev.
+
+```
+docker-compose -f docker-compose.dev.yaml up -d
+```
+
+4. (DEV) To shutdown all containers in dev.
+
+```
+docker-compose -f docker-compose.dev.yaml down
+```
+
 ## Frequently used commands:
 
 ### Backend:
